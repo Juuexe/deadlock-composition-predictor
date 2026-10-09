@@ -6,5 +6,6 @@ coverage/
 !.env.example
 data/
 models/
+work/
 *.pem
 *.log

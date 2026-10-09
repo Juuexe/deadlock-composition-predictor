@@ -34,10 +34,24 @@ Potential data source: https://api.deadlock-api.com/docs
 npm run import:data -- 1000
 ```
 
-The optional limit is 1–10000; default 1000. The importer makes one hero request and one bulk match request, with a 60-second timeout per request. HTTP failures stop the import; rerun later after rate limiting. It uses the latest normal ranked/unranked matches, excluding unscored games, incomplete teams, malformed fields and duplicate heroes.
+The first argument is the per-window limit (1–10000; default 1000). The second is the number of daily windows (1–14; default 1). For example, npm run import:data -- 1000 14 collects at most 14000 matches across two weeks. The importer makes one hero request and one bulk request per window, with a 60-second timeout per request. It ends the sample one hour before import time to favor completed games. HTTP failures stop the import; rerun later after rate limiting. It uses normal ranked/unranked matches, excluding unscored games, incomplete teams, malformed fields and duplicate heroes.
 
 Local ignored outputs: data/heroes.json, data/matches.json and data/import-summary.json. The saved match fields are matchId, startedAt, teamA, teamB and winner. Account IDs, skill badges, items and performance statistics returned by the upstream API are discarded before storage. Unzoned API timestamps are interpreted as UTC. Each file is replaced atomically after validation; the three files are not a single transaction. Run one importer at a time.
 
 The sample is for verifying the pipeline, not for claiming prediction accuracy. It contains recent fetched matches, which may be unrepresentative. Training needs broader history, patch boundaries and chronological evaluation; start-time alone is not a verified patch label. The current hero catalog is stored separately and historical heroes are retained rather than silently removed.
 
-Current status: a tested composition-only importer and contract. No trained model, web UI or prediction endpoint exists yet.
+## Train and predict
+
+```sh
+npm run import:data -- 10000 1
+npm run train
+npm run predict -- "4,12,31,58,85,88" "17,52,69,72,76,84"
+```
+
+The predictor expects six distinct hero IDs on each team. Find IDs and names in data/heroes.json. Unsupported heroes cause an error rather than an invented neutral contribution. Outputs are experimental probabilities and hero appearance counts in training.
+
+Training uses the period since the latest first observation of any hero in the saved dataset, so newly observed heroes can enter training. This is a roster observation rule, not a verified release or patch date. At least 1000 matches must remain. Split that cohort by time into approximately 70% training, 15% validation and 15% test, without shared match IDs or split-boundary timestamps. Choose regularization on validation only, then report test log loss, Brier score, calibration bins and coverage against both 50/50 and training win-rate constants.
+
+The model is regularized logistic regression on signed hero presence, fitted with full-batch gradient descent. No player features or side intercept. Swapping teams complements the probability. Synergy and counter terms are not yet implemented. The evaluation applies only to supported compositions, and explicitly reports any abstentions. Model files stay local in models/; aggregate evaluation is in docs/baseline-evaluation.json. Rerunning training replaces the local baseline.
+
+Current status: real-data importer, experimental trained baseline and command-line prediction. See docs/model-assessment.md for the observed results and limitations.
