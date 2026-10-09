@@ -1,0 +1,65 @@
+import { createServer, type IncomingMessage } from 'node:http';
+import { readFile } from 'node:fs/promises';
+import { predict, validateComposition, type HeroModel } from './model.ts';
+
+class HttpError extends Error {
+  status: number;
+  constructor(status: number, message: string) { super(message); this.status = status; }
+}
+
+function readJson(request: IncomingMessage): Promise<unknown> {
+  return new Promise((resolve, reject) => {
+    let body = '', bytes = 0, failed = false;
+    request.on('data', (chunk: Buffer) => {
+      bytes += chunk.length;
+      if (failed) return;
+      if (bytes > 16384) { failed = true; reject(new HttpError(413, 'Request is too large.')); return; }
+      body += chunk.toString('utf8');
+    });
+    request.on('error', () => reject(new HttpError(400, 'Could not read the request.')));
+    request.on('end', () => {
+      if (failed) return;
+      try { resolve(JSON.parse(body)); } catch { reject(new HttpError(400, 'Invalid JSON.')); }
+    });
+  });
+}
+
+export function createApp(model: HeroModel, heroes: { id: number; name: string }[]) {
+  const server = createServer(async (request, response) => {
+    response.setHeader('Content-Security-Policy', "default-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'");
+    response.setHeader('X-Content-Type-Options', 'nosniff');
+    response.setHeader('Cache-Control', 'no-store');
+    const json = (status: number, value: unknown) => {
+      response.writeHead(status, { 'Content-Type': 'application/json; charset=utf-8' });
+      response.end(JSON.stringify(value));
+    };
+    try {
+      const path = request.url?.split('?')[0];
+      if (request.method === 'GET' && path === '/api/heroes') {
+        json(200, heroes.filter(hero => Object.hasOwn(model.weights, hero.id)));
+      } else if (request.method === 'POST' && path === '/api/predict') {
+        if (request.headers['content-type']?.split(';')[0] !== 'application/json') throw new HttpError(415, 'Send application/json.');
+        const input = await readJson(request);
+        try {
+          validateComposition(input);
+          if (Object.keys(input).sort().join(',') !== 'teamA,teamB') throw new Error('Only hero compositions are accepted.');
+          const probability = predict(model, input);
+          json(200, {
+            status: 'experimental', teamAWinProbability: probability, teamBWinProbability: 1 - probability,
+            heroSupport: [...input.teamA, ...input.teamB].map(heroId => ({ heroId, trainingAppearances: model.counts[heroId] })),
+          });
+        } catch (error) { throw new HttpError(400, error instanceof Error ? error.message : 'Invalid composition.'); }
+      } else if (request.method === 'GET' && ['/', '/app.js', '/style.css'].includes(path ?? '')) {
+        const file = path === '/' ? 'index.html' : path!.slice(1);
+        const type = file.endsWith('.html') ? 'text/html' : file.endsWith('.js') ? 'text/javascript' : 'text/css';
+        const content = await readFile(new URL(`../public/${file}`, import.meta.url));
+        response.writeHead(200, { 'Content-Type': `${type}; charset=utf-8` }); response.end(content);
+      } else json(404, { error: 'Not found.' });
+    } catch (error) {
+      json(error instanceof HttpError ? error.status : 500, { error: error instanceof HttpError ? error.message : 'Unable to complete the request.' });
+    }
+  });
+  server.requestTimeout = 15000;
+  server.headersTimeout = 15000;
+  return server;
+}

@@ -54,4 +54,10 @@ Training uses the period since the latest first observation of any hero in the s
 
 The model is regularized logistic regression on signed hero presence, fitted with full-batch gradient descent. No player features or side intercept. Swapping teams complements the probability. Synergy and counter terms are not yet implemented. The evaluation applies only to supported compositions, and explicitly reports any abstentions. Model files stay local in models/; aggregate evaluation is in docs/baseline-evaluation.json. Rerunning training replaces the local baseline.
 
-Current status: real-data importer, experimental trained baseline and command-line prediction. See docs/model-assessment.md for the observed results and limitations.
+## Local browser interface
+
+After importing and training, run npm run dev and open http://127.0.0.1:3000. Select six heroes per side and compare. The interface prevents repeated picks and shows training appearances for the selected heroes. It lists only heroes supported by the local model.
+
+The server binds to the local machine only. No hosting, accounts, player identifiers or telemetry are configured. Restart the server after replacing the model or catalog; they are loaded at startup. Predictions reject malformed JSON, extra fields, invalid IDs and oversized bodies.
+
+Current status: real-data importer, experimental trained baseline, command-line prediction and manual browser comparison. See docs/model-assessment.md for the observed results and limitations. Draft recommendations, synergy/counter features and automatic match detection are still deferred.
