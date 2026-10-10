@@ -78,6 +78,18 @@ The server binds to the local machine only. No hosting, accounts, player identif
 
 Current status: importer, experimental trained model, pair-feature comparison, frozen-model evaluation, command-line prediction and manual browser comparison. See docs/model-assessment.md for results and limitations. Draft recommendations and automatic match detection are still deferred.
 
+## Nonlinear composition experiment
+
+The separate `research:nonlinear` command trains [scikit-learn gradient-boosted trees](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html) using signed hero-presence features only. Create a research-only Python environment with `python -m venv .venv`, then install `requirements-research.txt` using that environment's pip. On Windows: `.venv/Scripts/python.exe -m pip install -r requirements-research.txt`. The browser app still needs only Node.
+
+Run `npm run reliability:check` to reserve a prospective reliability period, then `npm run research:nonlinear` against the existing research plan. The experiment reads training, validation and calibration only, verifies their hashes and distinct match IDs, and refuses development matches starting during the reserved reliability period. It does not read the previous spent final test. A frozen nonlinear candidate cannot be overwritten by rerunning this command.
+
+The fixed grid is depth 2 or 3, 100 or 300 trees, learning rate 0.05, minimum 100 mirrored training rows per leaf, seed 42. Team-swapped training rows get opposite outcomes; scoring uses half the difference between original and swapped logits, guaranteeing complementary probabilities. JSON trees avoid pickle loading. Node verifies all four candidates' exported predictions against Python on every supported validation match before selection.
+
+A logistic comparator trains on exactly the same earlier training set, selecting regularization on validation. It is distinct from the deployed model, which has seen newer matches. Select the tree configuration by validation log loss; it must beat the matched comparator on both log loss and Brier score to advance. Separate calibration data selects a temperature from the fixed existing grid. Validation and calibration remain exploratory development evidence, never final performance claims.
+
+The first run trained on 5,474 matches and validated on 957 with 100% coverage. Trees picked 64.68% of winners versus 63.22% for the matched logistic comparator, but had worse log loss (0.63614 versus 0.63317) and Brier score (0.22256 versus 0.22152). The candidate was rejected at validation. It was not deployed or tested on spent final-test labels. The aggregate report is `docs/nonlinear-evaluation.json`; local trees and inputs stay ignored. Any advancing candidate would still need a separately planned fresh later test against the frozen deployed predictor; this command does not deploy.
+
 ## Frozen research protocol
 
 ```sh
