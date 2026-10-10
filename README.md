@@ -60,6 +60,16 @@ Tune each family over regularization values 0.001, 0.01 and 0.1 on validation on
 
 Before importing a new sample or retraining, preserve models/baseline.json as models/prior-baseline.json. Then import a later batch and run npm run evaluate:later. This reports only matches whose start time is strictly after the prior model's saved timestamp, without refitting that model. Aggregate results go to docs/prospective-evaluation.json. This evaluation belongs to the frozen prior model, not the newly trained candidate.
 
+## Daily reliability evidence
+
+Run `npm run reliability:check` to freeze the current baseline and begin a separate prospective evaluation. The first run writes an immutable local snapshot under ignored `data/reliability/`; subsequent runs keep that snapshot even if the application baseline changes. Changed scoring code stops collection. Never delete the snapshot to restart an unsuccessful result, and never use these matches for training or tuning.
+
+Run the same command on later days to append fresh hourly windows, up to 24 windows per invocation. Each full hour starts after the freeze, with a two-hour completion delay. Saved windows are not fetched again. Requests use the community [Deadlock API](https://api.deadlock-api.com/docs); 2500-result caps and accepted counts are recorded. Late API ingestion can leave missing matches. Only hero compositions, outcome, match ID and start time are saved; no player identities or statistics enter prediction.
+
+The aggregate `docs/reliability-evaluation.json` reports coverage, accuracy, log loss, Brier score, calibration bins and approximate 95% Wilson intervals, both overall and by America/Chicago date. Small or partial days are descriptive evidence, not a pass/fail certification. A 50–60% bin can test average confidence in that range, but cannot validate exactly 58%. Repeated reports do not constitute a significance test. Known later gameplay announcements stop sampling one hour before their timestamps; exact deployment times remain unverified. A new patch needs a separately planned experiment.
+
+Collection is command-driven; no background scheduler is installed. Fresh multi-day evidence cannot exist at initialization. The active browser predictor is unchanged.
+
 ## Local browser interface
 
 After importing and training, run npm run dev and open http://127.0.0.1:3000. Select six heroes per side and compare. The interface prevents repeated picks and shows training appearances for the selected heroes. It lists only heroes supported by the local model.

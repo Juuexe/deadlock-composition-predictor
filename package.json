@@ -10,6 +10,7 @@
     "import:data": "node src/import-data.ts",
     "train": "node src/train.ts",
     "evaluate:later": "node src/evaluate-later.ts",
+    "reliability:check": "node src/check-reliability.ts",
     "research:prepare": "node src/prepare-research.ts",
     "research:train": "node src/train-research.ts",
     "research:test": "node src/test-research.ts",

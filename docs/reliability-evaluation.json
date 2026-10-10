@@ -1,0 +1,17 @@
+{
+  "generatedAt": "2026-10-10T04:37:11.192Z",
+  "frozenAt": "2026-10-10T04:37:11.067Z",
+  "codeSha256": "80f676d637f0241896413f4a2286d7da7457fe4ec424b5628a5bc1e694da64bd",
+  "modelSha256": "3debc4970fe52abf0546104f48110244623eb45d04846fcb04c6c7a4b3193325",
+  "modelKind": "hero-logistic-v1",
+  "timeZone": "America/Chicago",
+  "nextAnnouncement": null,
+  "windows": [],
+  "total": 0,
+  "coverage": null,
+  "overall": null,
+  "coinFlip": null,
+  "days": [],
+  "status": "Waiting for fresh completed sampling windows after freeze.",
+  "limitations": "Fixed 2500-match hourly availability samples; capped windows and delayed API ingestion can bias results. Daily and calibration Wilson intervals are approximate and assume independent matches. Ten-percentage-point calibration bins do not establish exact 58% calibration. Stop one hour before the next identified official gameplay announcement; deployment boundaries and unannounced updates remain unverified. Repeated checks are descriptive, not significance tests. These matches are evaluation-only; never use them to train or tune this predictor."
+}
