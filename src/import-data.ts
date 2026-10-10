@@ -1,12 +1,7 @@
 import { mkdir } from 'node:fs/promises';
 import { normalizeMatch } from './data.ts';
 import { saveJson } from './files.ts';
-
-async function getJson(url: string): Promise<unknown> {
-  const response = await fetch(url, { signal: AbortSignal.timeout(60_000) });
-  if (!response.ok) throw new Error(`Deadlock API returned HTTP ${response.status}; retry later if rate limited.`);
-  return response.json();
-}
+import { getJson } from './api.ts';
 
 const limit = Number(process.argv[2] ?? 1000);
 if (!Number.isSafeInteger(limit) || limit < 1 || limit > 10000) throw new Error('Match limit must be an integer from 1 to 10000.');

@@ -8,6 +8,7 @@ export type HeroModel = {
   regularization: number;
   pairs?: Record<string, number>;
   pairCounts?: Record<string, number>;
+  temperature?: number;
 };
 
 export function parseModel(value: unknown): HeroModel {
@@ -16,6 +17,7 @@ export function parseModel(value: unknown): HeroModel {
     || !('weights' in value) || !value.weights || typeof value.weights !== 'object' || Array.isArray(value.weights)
     || !('counts' in value) || !value.counts || typeof value.counts !== 'object' || Array.isArray(value.counts)) throw new Error('Invalid model file.');
   const weights = Object.entries(value.weights);
+  if ('temperature' in value && (typeof value.temperature !== 'number' || !Number.isFinite(value.temperature) || value.temperature <= 0)) throw new Error('Invalid calibration temperature.');
   const counts = Object.entries(value.counts);
   if (!weights.length || weights.length !== counts.length || weights.some(([key, weight]) =>
     !/^[1-9]\d*$/.test(key) || !Number.isSafeInteger(Number(key)) || typeof weight !== 'number' || !Number.isFinite(weight)
@@ -112,7 +114,7 @@ export function predict(model: HeroModel, composition: Composition): number {
     }
   }
   if (model.kind === 'hero-pairs-logistic-v1') for (const [key, sign] of pairTerms(composition)) score += sign * (model.pairs?.[key] ?? 0);
-  return sigmoid(score);
+  return sigmoid(score / (model.temperature ?? 1));
 }
 
 export function trainModel(rows: TrainingMatch[], regularization: number, interactions = false): HeroModel {
@@ -179,4 +181,15 @@ export function evaluate(rows: TrainingMatch[], probability: (row: TrainingMatch
       predicted: bin.predicted / bin.count, observed: bin.observed / bin.count,
     })),
   };
+}
+
+export function calibrate(model: HeroModel, rows: TrainingMatch[]): HeroModel {
+  let best = { ...model, temperature: 1 };
+  let loss = evaluate(rows, row => predict(best, row)).logLoss;
+  for (const temperature of [0.5, 0.75, 1.25, 1.5, 2, 3]) {
+    const candidate = { ...model, temperature };
+    const score = evaluate(rows, row => predict(candidate, row)).logLoss;
+    if (score < loss) { best = candidate; loss = score; }
+  }
+  return best;
 }

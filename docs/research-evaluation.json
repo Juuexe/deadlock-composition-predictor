@@ -1,0 +1,270 @@
+{
+  "planId": "0c608502-ca14-4ae4-8857-36454a444f76",
+  "generatedAt": "2026-10-10T04:12:09.026Z",
+  "status": "experimental",
+  "modelKind": "hero-logistic-v1",
+  "announcementPeriod": "2026-10-09T21:00:04.000Z",
+  "candidate": {
+    "frozenAt": "2026-10-10T04:11:21.972Z",
+    "comparisons": [
+      {
+        "kind": "hero-logistic-v1",
+        "regularization": 0.001,
+        "validation": {
+          "count": 957,
+          "accuracy": 0.632183908045977,
+          "logLoss": 0.6331718627499248,
+          "brierScore": 0.221524004193483
+        }
+      },
+      {
+        "kind": "hero-logistic-v1",
+        "regularization": 0.01,
+        "validation": {
+          "count": 957,
+          "accuracy": 0.6311389759665622,
+          "logLoss": 0.6338423039021717,
+          "brierScore": 0.22166477194725934
+        }
+      },
+      {
+        "kind": "hero-logistic-v1",
+        "regularization": 0.1,
+        "validation": {
+          "count": 957,
+          "accuracy": 0.644723092998955,
+          "logLoss": 0.6481077055073181,
+          "brierScore": 0.22794099317090924
+        }
+      },
+      {
+        "kind": "hero-pairs-logistic-v1",
+        "regularization": 0.001,
+        "validation": {
+          "count": 957,
+          "accuracy": 0.6185997910135841,
+          "logLoss": 0.6443687840451406,
+          "brierScore": 0.22656279058893078
+        }
+      },
+      {
+        "kind": "hero-pairs-logistic-v1",
+        "regularization": 0.01,
+        "validation": {
+          "count": 957,
+          "accuracy": 0.6248693834900731,
+          "logLoss": 0.6411584564209971,
+          "brierScore": 0.22513146049991245
+        }
+      },
+      {
+        "kind": "hero-pairs-logistic-v1",
+        "regularization": 0.1,
+        "validation": {
+          "count": 957,
+          "accuracy": 0.6300940438871473,
+          "logLoss": 0.6391041779445097,
+          "brierScore": 0.2239214044325424
+        }
+      }
+    ],
+    "calibration": {
+      "count": 392,
+      "temperature": 1,
+      "before": {
+        "count": 392,
+        "accuracy": 0.6352040816326531,
+        "logLoss": 0.6385441417312847,
+        "brierScore": 0.22408147563092812
+      },
+      "after": {
+        "count": 392,
+        "accuracy": 0.6352040816326531,
+        "logLoss": 0.6385441417312847,
+        "brierScore": 0.22408147563092812
+      }
+    }
+  },
+  "split": {
+    "train": {
+      "path": "data/research/0c608502-ca14-4ae4-8857-36454a444f76/train.json",
+      "count": 5474,
+      "sha256": "1cdfcac47f239344b0f9b0be88b793cf899adf604623c5990dc9b7d0afc96ec9",
+      "first": "2026-10-09T22:13:20.000Z",
+      "last": "2026-10-10T00:37:56.000Z"
+    },
+    "validation": {
+      "path": "data/research/0c608502-ca14-4ae4-8857-36454a444f76/validation.json",
+      "count": 957,
+      "sha256": "348f3cce46747f452a3bdbbc306b78f2176fb4139ccc5ddb256d11bf2e9ff58a",
+      "first": "2026-10-10T00:53:28.000Z",
+      "last": "2026-10-10T01:46:47.000Z"
+    },
+    "calibration": {
+      "path": "data/research/0c608502-ca14-4ae4-8857-36454a444f76/calibration.json",
+      "count": 392,
+      "sha256": "3fa5d81bf2cc3fb07fa56765ecce765577e223c168a6093f1bdc5b60f4308511",
+      "first": "2026-10-10T01:57:32.000Z",
+      "last": "2026-10-10T02:27:52.000Z"
+    },
+    "test": {
+      "path": "data/research/0c608502-ca14-4ae4-8857-36454a444f76/test.json",
+      "count": 720,
+      "sha256": "efe96af34fc49a53f73ed91135b982b36f1eb63829f241decb1c339d1fc728f4",
+      "first": "2026-10-10T02:54:16.000Z",
+      "last": "2026-10-10T03:33:32.000Z"
+    }
+  },
+  "test": {
+    "count": 720,
+    "logLoss": 0.6492352938623274,
+    "brierScore": 0.22911126047279937,
+    "accuracy": 0.6097222222222223,
+    "calibration": [
+      {
+        "lower": 0.1,
+        "upper": 0.2,
+        "count": 13,
+        "predicted": 0.1804822012283605,
+        "observed": 0.3076923076923077
+      },
+      {
+        "lower": 0.2,
+        "upper": 0.3,
+        "count": 70,
+        "predicted": 0.2539722496443072,
+        "observed": 0.22857142857142856
+      },
+      {
+        "lower": 0.3,
+        "upper": 0.4,
+        "count": 107,
+        "predicted": 0.3533911552313052,
+        "observed": 0.42990654205607476
+      },
+      {
+        "lower": 0.4,
+        "upper": 0.5,
+        "count": 164,
+        "predicted": 0.4548232042586279,
+        "observed": 0.4451219512195122
+      },
+      {
+        "lower": 0.5,
+        "upper": 0.6,
+        "count": 148,
+        "predicted": 0.5462644813780887,
+        "observed": 0.49324324324324326
+      },
+      {
+        "lower": 0.6,
+        "upper": 0.7,
+        "count": 129,
+        "predicted": 0.6514375419965797,
+        "observed": 0.6434108527131783
+      },
+      {
+        "lower": 0.7,
+        "upper": 0.8,
+        "count": 72,
+        "predicted": 0.7418635278031166,
+        "observed": 0.7361111111111112
+      },
+      {
+        "lower": 0.8,
+        "upper": 0.9,
+        "count": 17,
+        "predicted": 0.830608732831313,
+        "observed": 0.8823529411764706
+      }
+    ]
+  },
+  "incumbent": {
+    "count": 720,
+    "logLoss": 0.6491462496761546,
+    "brierScore": 0.22902624759968854,
+    "accuracy": 0.6152777777777778,
+    "calibration": [
+      {
+        "lower": 0.1,
+        "upper": 0.2,
+        "count": 5,
+        "predicted": 0.19095575486583366,
+        "observed": 0
+      },
+      {
+        "lower": 0.2,
+        "upper": 0.3,
+        "count": 58,
+        "predicted": 0.2645136228798806,
+        "observed": 0.2413793103448276
+      },
+      {
+        "lower": 0.3,
+        "upper": 0.4,
+        "count": 105,
+        "predicted": 0.35436724157008415,
+        "observed": 0.4095238095238095
+      },
+      {
+        "lower": 0.4,
+        "upper": 0.5,
+        "count": 178,
+        "predicted": 0.4526995266966552,
+        "observed": 0.42696629213483145
+      },
+      {
+        "lower": 0.5,
+        "upper": 0.6,
+        "count": 183,
+        "predicted": 0.5467020499883056,
+        "observed": 0.5136612021857924
+      },
+      {
+        "lower": 0.6,
+        "upper": 0.7,
+        "count": 124,
+        "predicted": 0.6472751856212509,
+        "observed": 0.6693548387096774
+      },
+      {
+        "lower": 0.7,
+        "upper": 0.8,
+        "count": 60,
+        "predicted": 0.7348487061802669,
+        "observed": 0.7666666666666667
+      },
+      {
+        "lower": 0.8,
+        "upper": 0.9,
+        "count": 7,
+        "predicted": 0.826080001627876,
+        "observed": 1
+      }
+    ]
+  },
+  "coinFlip": {
+    "count": 720,
+    "logLoss": 0.693147180559947,
+    "brierScore": 0.25,
+    "accuracy": 0.5,
+    "calibration": [
+      {
+        "lower": 0.5,
+        "upper": 0.6,
+        "count": 720,
+        "predicted": 0.5,
+        "observed": 0.5041666666666667
+      }
+    ]
+  },
+  "coverage": 1,
+  "promoted": false,
+  "limitations": [
+    "Announcement timestamps are proxies, not verified game build/deployment boundaries.",
+    "Current-period data still spans hours; older periods are archived separately and are not pooled into this model.",
+    "API-capped hourly samples are not a complete or random match population.",
+    "Final-test labels are now spent. Do not tune or repeat model selection against these results.",
+    "Lower probability losses do not alone establish calibration across future days or patches."
+  ]
+}

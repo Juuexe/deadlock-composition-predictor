@@ -67,3 +67,23 @@ After importing and training, run npm run dev and open http://127.0.0.1:3000. Se
 The server binds to the local machine only. No hosting, accounts, player identifiers or telemetry are configured. Restart the server after replacing the model or catalog; they are loaded at startup. Predictions reject malformed JSON, extra fields, invalid IDs and oversized bodies.
 
 Current status: importer, experimental trained model, pair-feature comparison, frozen-model evaluation, command-line prediction and manual browser comparison. See docs/model-assessment.md for results and limitations. Draft recommendations and automatic match detection are still deferred.
+
+## Frozen research protocol
+
+```sh
+npm run research:prepare
+npm run research:train
+npm run research:test
+```
+
+Preparation samples four recent official Steam gameplay-announcement periods, using one-hour windows at six-hour intervals in older periods and hourly windows in the newest. Windows exclude one hour around announcement boundaries. The API can cap a window at 2500 results, recorded in the plan. Requests are spaced by at least 2.2 seconds. This is stratified availability sampling, not a random sample or a census.
+
+Announcement dates are boundary proxies. Feed contents identify updates or immediate hero releases; exact game build/deployment times are not known. Forum RSS publication dates can reflect later edits to old posts, so they are excluded. Older periods are stored separately; the deployment candidate trains only on the newest period.
+
+The newest period gets time-based 50/20/15/15 training/validation/calibration/test partitions. Earlier matches whose completion time reaches the next cutoff are purged. Final-test starts must be later than legacy imported datasets and every previously prepared final-test window. At least 1000 training, 200 validation, 200 calibration and 500 final-test records are required. New imports never overwrite an existing experiment directory.
+
+Training compares the six fixed hero-only/pair candidates on validation, then selects a positive temperature scale on separate calibration data. A temperature of one leaves probabilities unchanged; other scales adjust confidence while preserving team-swap symmetry. Candidate model, incumbent model and scoring-code hash are frozen before test access. Partition hashes detect changed data. Training will not overwrite a frozen candidate, and final evaluation writes a single-use marker before opening the test. If evaluation fails after opening, the test is still spent; prepare a new later experiment.
+
+The candidate replaces the local model only if at least 500 common supported test matches have at least 95% coverage and both log loss and Brier score beat the frozen incumbent and 50/50. There is no retuning after final results. This gate uses point estimates and does not prove a statistically reliable improvement.
+
+Local datasets, candidates and spent-test markers live under ignored data/research/. Aggregate plan and results are in docs/research-plan.json and docs/research-evaluation.json. Read docs/research-assessment.md for the first run. Calibration and test sampling are still short-period evidence, not proof of stable accuracy across patches.

@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { trainModel, predict, evaluate, chronologicalSplit, rosterCohort, parseModel, parseMatches, pairTerms, laterMatches } from '../src/model.ts';
+import { trainModel, predict, evaluate, chronologicalSplit, rosterCohort, parseModel, parseMatches, pairTerms, laterMatches, calibrate } from '../src/model.ts';
 import type { TrainingMatch } from '../src/data.ts';
 
 const teamA = [1, 2, 3, 4, 5, 6];
@@ -103,4 +103,13 @@ test('prospective evaluation excludes matches at or before the saved model time'
   assert.equal(laterMatches(rows, rows.at(-1)!.startedAt).length, 0);
   assert.throws(() => laterMatches(rows, 'bad'));
   assert.throws(() => laterMatches([...rows, rows[0]], rows[49].startedAt));
+});
+
+test('temperature calibration reduces overconfidence without breaking team symmetry', () => {
+  const model = trainModel(rows, 0.001);
+  const calibration = rows.map((row, i) => ({ ...row, winner: i % 5 === 0 ? (row.winner === 'A' ? 'B' : 'A') as 'A' | 'B' : row.winner }));
+  const calibrated = calibrate(model, calibration);
+  assert.ok(evaluate(calibration, row => predict(calibrated, row)).logLoss < evaluate(calibration, row => predict(model, row)).logLoss);
+  assert.ok(Math.abs(predict(calibrated, { teamA, teamB }) + predict(calibrated, { teamA: teamB, teamB: teamA }) - 1) < 1e-12);
+  assert.throws(() => parseModel({ ...model, temperature: 0 }));
 });
