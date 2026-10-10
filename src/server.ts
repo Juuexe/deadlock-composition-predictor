@@ -45,7 +45,7 @@ export function createApp(model: HeroModel, heroes: { id: number; name: string }
           if (Object.keys(input).sort().join(',') !== 'teamA,teamB') throw new Error('Only hero compositions are accepted.');
           const probability = predict(model, input);
           json(200, {
-            status: 'experimental', teamAWinProbability: probability, teamBWinProbability: 1 - probability,
+            status: 'experimental', modelKind: model.kind, teamAWinProbability: probability, teamBWinProbability: 1 - probability,
             heroSupport: [...input.teamA, ...input.teamB].map(heroId => ({ heroId, trainingAppearances: model.counts[heroId] })),
           });
         } catch (error) { throw new HttpError(400, error instanceof Error ? error.message : 'Invalid composition.'); }

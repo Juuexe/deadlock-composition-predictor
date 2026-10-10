@@ -38,6 +38,9 @@ form.addEventListener('submit', async event => {
     document.querySelector('#chance-a').textContent = `${a.toFixed(1)}%`;
     document.querySelector('#chance-b').textContent = `${(100 - a).toFixed(1)}%`;
     document.querySelector('#advantage').value = a;
+    document.querySelector('.result-note').textContent = prediction.modelKind === 'hero-pairs-logistic-v1'
+      ? 'This model includes hero strength, teammate-pair associations and opponent matchups. Rare or unseen pairs add no adjustment.'
+      : 'The hero-strength model performed better in validation. Experimental synergy and matchup terms are not used in this estimate.';
     const support = document.querySelector('#support'); support.replaceChildren();
     for (const entry of prediction.heroSupport) {
       const row = document.createElement('tr');

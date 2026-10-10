@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { trainModel, predict, evaluate, chronologicalSplit, rosterCohort, parseModel, parseMatches } from '../src/model.ts';
+import { trainModel, predict, evaluate, chronologicalSplit, rosterCohort, parseModel, parseMatches, pairTerms, laterMatches } from '../src/model.ts';
 import type { TrainingMatch } from '../src/data.ts';
 
 const teamA = [1, 2, 3, 4, 5, 6];
@@ -60,4 +60,47 @@ test('rejects corrupt model files and training files containing player data', ()
     { ...model, counts: {} }, { ...model, regularization: -1 }]) assert.throws(() => parseModel(value));
   assert.throws(() => parseMatches([{ ...rows[0], accountId: 123 }]));
   assert.throws(() => parseMatches([{ ...rows[0], winner: 'unknown' }]));
+});
+
+test('synergy pairs are unordered and opponent terms reverse sign when teams swap', () => {
+  const terms = pairTerms({ teamA, teamB });
+  assert.equal(terms.length, 66);
+  assert.deepEqual(terms.find(([key]) => key === 's:1:2'), ['s:1:2', 1]);
+  assert.deepEqual(terms.find(([key]) => key === 's:7:8'), ['s:7:8', -1]);
+  assert.deepEqual(terms.find(([key]) => key === 'c:1:7'), ['c:1:7', 1]);
+  const reversed = new Map(pairTerms({ teamA: teamB, teamB: teamA }));
+  for (const [key, sign] of terms) assert.equal(reversed.get(key), -sign);
+  assert.deepEqual(pairTerms({ teamA: [...teamA].reverse(), teamB }), terms);
+});
+
+test('pair models round trip, learn pair weights, and reject corrupt pair artifacts', () => {
+  const model = trainModel(rows, 0.01, true);
+  assert.equal(model.kind, 'hero-pairs-logistic-v1');
+  assert.ok(Object.keys(model.pairs ?? {}).some(key => key.startsWith('s:')));
+  assert.ok(Object.keys(model.pairs ?? {}).some(key => key.startsWith('c:')));
+  assert.deepEqual(parseModel(JSON.parse(JSON.stringify(model))), model);
+  assert.ok(predict(model, { teamA, teamB }) > 0.8);
+  assert.ok(Math.abs(predict(model, { teamA, teamB }) + predict(model, { teamA: teamB, teamB: teamA }) - 1) < 1e-12);
+  assert.throws(() => parseModel({ ...model, pairs: { 's:2:1': 0.1 }, pairCounts: { 's:2:1': 30 } }));
+  assert.throws(() => parseModel({ ...model, pairCounts: {} }));
+  const rare = trainModel(rows.slice(0, 10), 0.01, true);
+  assert.equal(Object.keys(rare.pairs ?? {}).length, 0);
+});
+
+test('prediction actually applies synergy and matchup coefficients independently of hero strength', () => {
+  const model = parseModel({
+    kind: 'hero-pairs-logistic-v1', regularization: 0.01,
+    weights: Object.fromEntries([...teamA, ...teamB].map(hero => [hero, 0])),
+    counts: Object.fromEntries([...teamA, ...teamB].map(hero => [hero, 30])),
+    pairs: { 's:1:2': 0.4, 'c:1:7': 0.2 }, pairCounts: { 's:1:2': 30, 'c:1:7': 30 },
+  });
+  assert.ok(Math.abs(predict(model, { teamA, teamB }) - 1 / (1 + Math.exp(-0.6))) < 1e-12);
+  assert.ok(Math.abs(predict(model, { teamA: teamB, teamB: teamA }) - 1 / (1 + Math.exp(0.6))) < 1e-12);
+});
+
+test('prospective evaluation excludes matches at or before the saved model time', () => {
+  assert.deepEqual(laterMatches(rows, rows[49].startedAt), rows.slice(50));
+  assert.equal(laterMatches(rows, rows.at(-1)!.startedAt).length, 0);
+  assert.throws(() => laterMatches(rows, 'bad'));
+  assert.throws(() => laterMatches([...rows, rows[0]], rows[49].startedAt));
 });

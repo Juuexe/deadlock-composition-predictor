@@ -52,7 +52,13 @@ The predictor expects six distinct hero IDs on each team. Find IDs and names in 
 
 Training uses the period since the latest first observation of any hero in the saved dataset, so newly observed heroes can enter training. This is a roster observation rule, not a verified release or patch date. At least 1000 matches must remain. Split that cohort by time into approximately 70% training, 15% validation and 15% test, without shared match IDs or split-boundary timestamps. Choose regularization on validation only, then report test log loss, Brier score, calibration bins and coverage against both 50/50 and training win-rate constants.
 
-The model is regularized logistic regression on signed hero presence, fitted with full-batch gradient descent. No player features or side intercept. Swapping teams complements the probability. Synergy and counter terms are not yet implemented. The evaluation applies only to supported compositions, and explicitly reports any abstentions. Model files stay local in models/; aggregate evaluation is in docs/baseline-evaluation.json. Rerunning training replaces the local baseline.
+Training compares a hero-only model with a pair-feature model: 15 unordered teammate pairs per side and 36 signed opponent pairs. Opponent terms reverse direction when the teams swap. Pair coefficients with fewer than 20 training observations are omitted and add no adjustment. Hero-only and pair models are fitted with full-batch gradient descent and regularization, without player features or side intercept. Swapping teams complements the probability.
+
+Tune each family over regularization values 0.001, 0.01 and 0.1 on validation only. Use pair terms only if they improve both validation log loss and Brier score over the current winner. Evaluate the selected model on the final holdout, without selecting on that test. The evaluation applies only to supported compositions, and explicitly reports abstentions. Model files stay local in models/; aggregate evaluation and candidate comparisons are in docs/baseline-evaluation.json. Rerunning training replaces the local baseline. The current run retained the hero-only model; pair features did not improve validation.
+
+## Test a frozen model on later matches
+
+Before importing a new sample or retraining, preserve models/baseline.json as models/prior-baseline.json. Then import a later batch and run npm run evaluate:later. This reports only matches whose start time is strictly after the prior model's saved timestamp, without refitting that model. Aggregate results go to docs/prospective-evaluation.json. This evaluation belongs to the frozen prior model, not the newly trained candidate.
 
 ## Local browser interface
 
@@ -60,4 +66,4 @@ After importing and training, run npm run dev and open http://127.0.0.1:3000. Se
 
 The server binds to the local machine only. No hosting, accounts, player identifiers or telemetry are configured. Restart the server after replacing the model or catalog; they are loaded at startup. Predictions reject malformed JSON, extra fields, invalid IDs and oversized bodies.
 
-Current status: real-data importer, experimental trained baseline, command-line prediction and manual browser comparison. See docs/model-assessment.md for the observed results and limitations. Draft recommendations, synergy/counter features and automatic match detection are still deferred.
+Current status: importer, experimental trained model, pair-feature comparison, frozen-model evaluation, command-line prediction and manual browser comparison. See docs/model-assessment.md for results and limitations. Draft recommendations and automatic match detection are still deferred.

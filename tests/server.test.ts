@@ -17,6 +17,7 @@ test('browser API predicts valid teams and rejects bad input and private file pa
   assert.equal(response.status, 200);
   const result = await response.json();
   assert.equal(result.status, 'experimental');
+  assert.equal(result.modelKind, 'hero-logistic-v1');
   assert.ok(result.teamAWinProbability > 0.5);
   assert.equal(result.heroSupport.length, 12);
   assert.equal((await post({ teamA, teamB: teamA })).status, 400);

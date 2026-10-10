@@ -1,6 +1,6 @@
 # Experimental baseline assessment
 
-The first predictor learns hero-strength associations from real match outcomes, using hero IDs only. It does not establish causal composition advantage and does not yet model synergies or counters.
+The predictor learns composition associations from real match outcomes, using hero IDs only. It does not establish causal advantage. Training now compares hero-only and pair-feature candidates; the currently selected model remains hero-only because pair features did not improve validation.
 
 ## Sampling diagnostics
 
@@ -20,6 +20,10 @@ This remains exploratory: the cohort rule changed after diagnostic evaluations. 
 
 ## Next model work
 
-Freeze the current pipeline and evaluate prospectively on later batches before using predictions as reliable advice. Obtain broader data within a verified roster/patch period. Then compare synergy and counter features to this hero-strength baseline using validation data, keeping a new final test untouched.
+The saved earlier hero model was tested without refitting on 8167 matches that started strictly after its saved timestamp. Coverage was 100%, winner accuracy 60.1%, log loss 0.6629 and Brier score 0.2352. The 50/50 log loss was 0.6931. This is stronger evidence than the earlier short exploratory holdout, but is still an API-availability sample over a short period, with unverified patches and calibration. Details are in prospective-evaluation.json.
+
+On a newer 9999-match sample, the observed roster cohort retained 9985 matches. The split used 6989 training, 1498 validation and 1498 test matches. Three regularization settings were compared per model family. The best hero-only validation scores were 0.64718 log loss and 0.22786 Brier; the strongest pair candidate scored 0.65139 and 0.22969. Therefore pair terms were not promoted. The retained model's final test accuracy was 62.5%, log loss 0.64797 and Brier 0.22846, with 100% coverage.
+
+These results belong to different models and samples and should not be described as a proven rise from 60.1% to 62.5%. Keep collecting independent later batches and verify patch boundaries before claiming stable accuracy. Pair terms use shared outcome data and may be confounded with hero strength and selection patterns; they are not mechanical counter rules.
 
 Method references: https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html and https://scikit-learn.org/stable/modules/calibration.html. This project implements the small linear baseline directly in TypeScript; it does not depend on scikit-learn.

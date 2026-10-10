@@ -2,14 +2,16 @@ import type { Composition } from './composition.ts';
 import type { TrainingMatch } from './data.ts';
 
 export type HeroModel = {
-  kind: 'hero-logistic-v1';
+  kind: 'hero-logistic-v1' | 'hero-pairs-logistic-v1';
   weights: Record<string, number>;
   counts: Record<string, number>;
   regularization: number;
+  pairs?: Record<string, number>;
+  pairCounts?: Record<string, number>;
 };
 
 export function parseModel(value: unknown): HeroModel {
-  if (!value || typeof value !== 'object' || !('kind' in value) || value.kind !== 'hero-logistic-v1'
+  if (!value || typeof value !== 'object' || !('kind' in value) || (value.kind !== 'hero-logistic-v1' && value.kind !== 'hero-pairs-logistic-v1')
     || !('regularization' in value) || typeof value.regularization !== 'number' || !Number.isFinite(value.regularization) || value.regularization <= 0
     || !('weights' in value) || !value.weights || typeof value.weights !== 'object' || Array.isArray(value.weights)
     || !('counts' in value) || !value.counts || typeof value.counts !== 'object' || Array.isArray(value.counts)) throw new Error('Invalid model file.');
@@ -18,6 +20,18 @@ export function parseModel(value: unknown): HeroModel {
   if (!weights.length || weights.length !== counts.length || weights.some(([key, weight]) =>
     !/^[1-9]\d*$/.test(key) || !Number.isSafeInteger(Number(key)) || typeof weight !== 'number' || !Number.isFinite(weight)
     || !counts.some(([hero, count]) => hero === key && Number.isSafeInteger(count) && count > 0))) throw new Error('Invalid hero weights or support counts.');
+  if (value.kind === 'hero-pairs-logistic-v1') {
+    if (!('pairs' in value) || !value.pairs || typeof value.pairs !== 'object' || Array.isArray(value.pairs)
+      || !('pairCounts' in value) || !value.pairCounts || typeof value.pairCounts !== 'object' || Array.isArray(value.pairCounts)) throw new Error('Missing pair model fields.');
+    const counts = new Map(Object.entries(value.pairCounts));
+    const pairs = Object.entries(value.pairs);
+    if (pairs.length !== counts.size || pairs.some(([key, weight]) => {
+      const match = /^[sc]:([1-9]\d*):([1-9]\d*)$/.exec(key);
+      const count = counts.get(key);
+      return !match || Number(match[1]) >= Number(match[2]) || !Object.hasOwn(value.weights!, match[1]) || !Object.hasOwn(value.weights!, match[2])
+        || typeof weight !== 'number' || !Number.isFinite(weight) || !Number.isSafeInteger(count) || Number(count) < 20;
+    })) throw new Error('Invalid pair weights or support counts.');
+  } else if ('pairs' in value || 'pairCounts' in value) throw new Error('Hero-only models cannot contain pair terms.');
   return value as HeroModel;
 }
 
@@ -66,7 +80,26 @@ export function rosterCohort(rows: TrainingMatch[]) {
   return { since, rows: rows.filter(row => row.startedAt >= since) };
 }
 
+export function laterMatches(rows: TrainingMatch[], frozenAt: string): TrainingMatch[] {
+  parseMatches(rows);
+  if (!Number.isFinite(Date.parse(frozenAt))) throw new Error('Invalid model freeze time.');
+  if (new Set(rows.map(row => row.matchId)).size !== rows.length) throw new Error('Duplicate match IDs.');
+  const cutoff = new Date(frozenAt).toISOString();
+  return rows.filter(row => row.startedAt > cutoff);
+}
+
 const sigmoid = (score: number) => 1 / (1 + Math.exp(-score));
+
+export function pairTerms(composition: Composition): [string, number][] {
+  const a = [...composition.teamA].sort((x, y) => x - y);
+  const b = [...composition.teamB].sort((x, y) => x - y);
+  const terms: [string, number][] = [];
+  for (const [team, sign] of [[a, 1], [b, -1]] as const) {
+    for (let i = 0; i < team.length; i++) for (let j = i + 1; j < team.length; j++) terms.push([`s:${team[i]}:${team[j]}`, sign]);
+  }
+  for (const own of a) for (const enemy of b) terms.push([`c:${Math.min(own, enemy)}:${Math.max(own, enemy)}`, own < enemy ? 1 : -1]);
+  return terms.sort(([x], [y]) => x.localeCompare(y));
+}
 
 export function predict(model: HeroModel, composition: Composition): number {
   validateComposition(composition);
@@ -78,37 +111,49 @@ export function predict(model: HeroModel, composition: Composition): number {
       score += sign * weight;
     }
   }
+  if (model.kind === 'hero-pairs-logistic-v1') for (const [key, sign] of pairTerms(composition)) score += sign * (model.pairs?.[key] ?? 0);
   return sigmoid(score);
 }
 
-export function trainModel(rows: TrainingMatch[], regularization: number): HeroModel {
+export function trainModel(rows: TrainingMatch[], regularization: number, interactions = false): HeroModel {
   parseMatches(rows);
   if (!Number.isFinite(regularization) || regularization <= 0) throw new Error('Regularization must be positive.');
   const heroes = [...new Set(rows.flatMap(row => [...row.teamA, ...row.teamB]))].sort((a, b) => a - b);
-  const index = new Map(heroes.map((hero, i) => [hero, i]));
-  const weights = new Float64Array(heroes.length);
-  const counts = new Float64Array(heroes.length);
-  const examples = rows.map(row => ({
-    a: row.teamA.map(id => index.get(id)!), b: row.teamB.map(id => index.get(id)!), y: row.winner === 'A' ? 1 : 0,
+  const terms = rows.map(row => [
+    ...row.teamA.map(hero => [String(hero), 1] as [string, number]),
+    ...row.teamB.map(hero => [String(hero), -1] as [string, number]),
+    ...(interactions ? pairTerms(row) : []),
+  ]);
+  const counts = new Map<string, number>();
+  for (const example of terms) for (const [key] of example) counts.set(key, (counts.get(key) ?? 0) + 1);
+  // shortcut: fewer than 20 observations leaves a pair neutral; revisit with broader history and validation.
+  const pairKeys = [...counts.keys()].filter(key => key.includes(':') && counts.get(key)! >= 20).sort();
+  const keys = [...heroes.map(String), ...pairKeys];
+  const index = new Map(keys.map((key, i) => [key, i]));
+  const weights = new Float64Array(keys.length);
+  const examples = terms.map((terms, i) => ({
+    terms: terms.filter(([key]) => index.has(key)).map(([key, sign]) => [index.get(key)!, sign] as const),
+    y: rows[i].winner === 'A' ? 1 : 0,
   }));
-  for (const example of examples) for (const i of [...example.a, ...example.b]) counts[i]++;
   // No intercept: swapping the two compositions must complement the probability.
-  for (let epoch = 0; epoch < 300; epoch++) {
-    const gradient = new Float64Array(heroes.length);
+  for (let epoch = 0; epoch < (interactions ? 1000 : 300); epoch++) {
+    const gradient = new Float64Array(keys.length);
     for (const example of examples) {
       let score = 0;
-      for (const i of example.a) score += weights[i];
-      for (const i of example.b) score -= weights[i];
+      for (const [i, sign] of example.terms) score += sign * weights[i];
       const error = sigmoid(score) - example.y;
-      for (const i of example.a) gradient[i] += error;
-      for (const i of example.b) gradient[i] -= error;
+      for (const [i, sign] of example.terms) gradient[i] += sign * error;
     }
-    for (let i = 0; i < weights.length; i++) weights[i] -= 0.5 * (gradient[i] / rows.length + regularization * weights[i]);
+    for (let i = 0; i < weights.length; i++) weights[i] -= (interactions ? 0.05 : 0.5) * (gradient[i] / rows.length + regularization * weights[i]);
   }
   return {
-    kind: 'hero-logistic-v1', regularization,
+    kind: interactions ? 'hero-pairs-logistic-v1' : 'hero-logistic-v1', regularization,
     weights: Object.fromEntries(heroes.map((hero, i) => [hero, weights[i]])),
-    counts: Object.fromEntries(heroes.map((hero, i) => [hero, counts[i]])),
+    counts: Object.fromEntries(heroes.map(hero => [hero, counts.get(String(hero))!])),
+    ...(interactions ? {
+      pairs: Object.fromEntries(pairKeys.map(key => [key, weights[index.get(key)!]])),
+      pairCounts: Object.fromEntries(pairKeys.map(key => [key, counts.get(key)!])),
+    } : {}),
   };
 }
 

@@ -1,0 +1,104 @@
+{
+  "generatedAt": "2026-10-10T03:47:56.951Z",
+  "frozenAt": "2026-10-09T22:50:44.120Z",
+  "frozenModelKind": "hero-logistic-v1",
+  "datasetSha256": "66848b2b89b1958f2cfae65d66fb5659478994d07e8446642da286b1792ed5dd",
+  "first": "2026-10-09T22:50:51.000Z",
+  "last": "2026-10-10T02:45:18.000Z",
+  "totalLaterMatches": 8167,
+  "coverage": 1,
+  "score": {
+    "count": 8167,
+    "logLoss": 0.662894497772343,
+    "brierScore": 0.2351809751032602,
+    "accuracy": 0.6009550630586507,
+    "calibration": [
+      {
+        "lower": 0,
+        "upper": 0.1,
+        "count": 1,
+        "predicted": 0.09578121149374769,
+        "observed": 0
+      },
+      {
+        "lower": 0.1,
+        "upper": 0.2,
+        "count": 147,
+        "predicted": 0.16594409464106136,
+        "observed": 0.19727891156462585
+      },
+      {
+        "lower": 0.2,
+        "upper": 0.3,
+        "count": 694,
+        "predicted": 0.25783697116533577,
+        "observed": 0.34293948126801155
+      },
+      {
+        "lower": 0.3,
+        "upper": 0.4,
+        "count": 1310,
+        "predicted": 0.3532581329950534,
+        "observed": 0.3938931297709924
+      },
+      {
+        "lower": 0.4,
+        "upper": 0.5,
+        "count": 1783,
+        "predicted": 0.4497760947626522,
+        "observed": 0.4627033090297252
+      },
+      {
+        "lower": 0.5,
+        "upper": 0.6,
+        "count": 1749,
+        "predicted": 0.5506228533193014,
+        "observed": 0.5391652372784448
+      },
+      {
+        "lower": 0.6,
+        "upper": 0.7,
+        "count": 1468,
+        "predicted": 0.6474429919316136,
+        "observed": 0.6042234332425068
+      },
+      {
+        "lower": 0.7,
+        "upper": 0.8,
+        "count": 811,
+        "predicted": 0.7440309024157358,
+        "observed": 0.7324290998766955
+      },
+      {
+        "lower": 0.8,
+        "upper": 0.9,
+        "count": 201,
+        "predicted": 0.8305031561716192,
+        "observed": 0.7711442786069652
+      },
+      {
+        "lower": 0.9,
+        "upper": 1,
+        "count": 3,
+        "predicted": 0.9123487233724162,
+        "observed": 0.6666666666666666
+      }
+    ]
+  },
+  "coinFlip": {
+    "count": 8167,
+    "logLoss": 0.6931471805600405,
+    "brierScore": 0.25,
+    "accuracy": 0.5,
+    "calibration": [
+      {
+        "lower": 0.5,
+        "upper": 0.6,
+        "count": 8167,
+        "predicted": 0.5,
+        "observed": 0.5129178400881597
+      }
+    ]
+  },
+  "limitations": "This evaluates the saved prior model only, without refitting on these matches. Available API matches are not a population sample; patches and calibration remain unverified. It is not prospective validation of the newly trained pair candidate."
+}

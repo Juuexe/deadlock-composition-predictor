@@ -10,8 +10,9 @@ const model = parseModel(artifact.model);
 const probability = predict(model, composition);
 console.log(JSON.stringify({
   status: 'experimental',
+  modelKind: model.kind,
   teamAWinProbability: probability, teamBWinProbability: 1 - probability,
   favoredTeam: probability === 0.5 ? 'even' : probability > 0.5 ? 'A' : 'B',
   heroSupport: [...composition.teamA, ...composition.teamB].map(heroId => ({ heroId, trainingAppearances: model.counts[heroId] })),
-  limitations: 'Hero-strength baseline only. Short exploratory holdout; accuracy and calibration are not established for future matches. No synergy or counter terms yet.',
+  limitations: 'Experimental model selected on validation data. Pair terms are used only when selected; sparse pairs contribute zero. Accuracy and calibration are not established for future patches.',
 }, null, 2));
