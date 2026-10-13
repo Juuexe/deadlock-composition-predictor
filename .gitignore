@@ -11,3 +11,6 @@ models/
 work/
 *.pem
 *.log
+
+.vercel
+.env*
