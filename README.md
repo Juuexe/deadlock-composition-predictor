@@ -80,7 +80,7 @@ After importing and training, run npm run dev and open http://127.0.0.1:3000. Se
 
 The server binds to the local machine only. No hosting, accounts, player identifiers or telemetry are configured. Restart the server after replacing the model or catalog; they are loaded at startup. Predictions reject malformed JSON, extra fields, invalid IDs and oversized bodies.
 
-Current status: importer, experimental trained model, pair-feature comparison, frozen-model evaluation, command-line prediction and manual browser comparison. See docs/model-assessment.md for results and limitations. Draft recommendations and automatic match detection are still deferred.
+Current status: experimental composition prediction, research evaluation, manual browser comparison and draft assistance. See docs/model-assessment.md for historical results and docs/release-status.md for release blockers. Automatic match detection remains deferred.
 
 ## Application release
 
