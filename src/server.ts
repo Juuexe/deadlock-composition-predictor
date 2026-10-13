@@ -1,5 +1,6 @@
 import { createServer, type IncomingMessage } from 'node:http';
 import { readFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 import { predict, validateComposition, type HeroModel } from './model.ts';
 
 class HttpError extends Error {
@@ -25,6 +26,7 @@ function readJson(request: IncomingMessage): Promise<unknown> {
 }
 
 export function createApp(model: HeroModel, heroes: { id: number; name: string }[]) {
+  const modelHash = createHash('sha256').update(JSON.stringify(model)).digest('hex');
   const server = createServer(async (request, response) => {
     response.setHeader('Content-Security-Policy', "default-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'");
     response.setHeader('X-Content-Type-Options', 'nosniff');
@@ -35,7 +37,20 @@ export function createApp(model: HeroModel, heroes: { id: number; name: string }
     };
     try {
       const path = request.url?.split('?')[0];
-      if (request.method === 'GET' && path === '/api/heroes') {
+      if (request.method === 'GET' && path === '/api/evidence') {
+        let reliability = null;
+        try {
+          const report = JSON.parse(await readFile('docs/reliability-evaluation.json', 'utf8'));
+          if (report.modelSha256 === modelHash && report.overall && Number.isSafeInteger(report.overall.count)
+            && report.overall.count > 0 && [report.coverage, report.overall.accuracy, report.overall.logLoss, report.overall.brierScore].every(Number.isFinite)
+            && [report.generatedAt, report.frozenAt].every((date: unknown) => typeof date === 'string' && Number.isFinite(Date.parse(date)))) {
+            reliability = { updatedAt: report.generatedAt, frozenAt: report.frozenAt, count: report.overall.count,
+              accuracy: report.overall.accuracy, logLoss: report.overall.logLoss, brierScore: report.overall.brierScore,
+              coverage: report.coverage, nextAnnouncement: report.nextAnnouncement ? { at: report.nextAnnouncement.at, title: report.nextAnnouncement.title } : null };
+          }
+        } catch { /* A missing or mismatched report must not imply evidence for this model. */ }
+        json(200, { modelVersion: modelHash.slice(0, 12), modelKind: model.kind, reliability });
+      } else if (request.method === 'GET' && path === '/api/heroes') {
         json(200, heroes.filter(hero => Object.hasOwn(model.weights, hero.id)));
       } else if (request.method === 'POST' && path === '/api/predict') {
         if (request.headers['content-type']?.split(';')[0] !== 'application/json') throw new HttpError(415, 'Send application/json.');

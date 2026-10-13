@@ -12,11 +12,31 @@ function update() {
     option.disabled = Boolean(option.value && option.value !== select.value && chosen.includes(option.value));
   }
   compare.disabled = pending || chosen.length !== 12 || new Set(chosen).size !== 12;
+  document.querySelector('#swap').disabled = pending || selects.length !== 12 || !chosen.length;
+  document.querySelector('#share').disabled = compare.disabled;
   status.textContent = pending ? 'Comparing compositions…' : `${chosen.length} of 12 heroes selected`;
 }
 
-form.addEventListener('change', () => { result.hidden = true; error.hidden = true; update(); });
-form.addEventListener('reset', () => { result.hidden = true; error.hidden = true; requestAnimationFrame(update); });
+function hideShare() { document.querySelector('#share-status').hidden = true; document.querySelector('#share-link-label').hidden = true; }
+form.addEventListener('change', () => { result.hidden = true; error.hidden = true; hideShare(); update(); });
+form.addEventListener('reset', () => { result.hidden = true; error.hidden = true; hideShare(); history.replaceState(null, '', location.pathname); requestAnimationFrame(update); });
+document.querySelector('#swap').addEventListener('click', () => {
+  const values = selects.map(select => select.value);
+  selects.forEach((select, index) => { select.value = values[(index + 6) % 12]; });
+  result.hidden = true; hideShare(); update();
+});
+document.querySelector('#share').addEventListener('click', async () => {
+  const url = new URL(location.href); url.search = ''; url.hash = '';
+  url.searchParams.set('a', selects.slice(0, 6).map(select => select.value).join(','));
+  url.searchParams.set('b', selects.slice(6).map(select => select.value).join(','));
+  history.replaceState(null, '', url);
+  const message = document.querySelector('#share-status');
+  const input = document.querySelector('#share-link'); input.value = url.href;
+  document.querySelector('#share-link-label').hidden = false;
+  try { await navigator.clipboard.writeText(url.href); message.textContent = 'Lineup link copied. Localhost links work only on a device running this app.'; }
+  catch { message.textContent = 'Copy the lineup link below. Localhost links work only on a device running this app.'; }
+  message.hidden = false;
+});
 form.addEventListener('submit', async event => {
   event.preventDefault();
   if (compare.disabled) return;
@@ -72,6 +92,27 @@ async function loadHeroes() {
       wrapper.append(label, select); document.getElementById(team).append(wrapper); selects.push(select);
     }
     update();
+    const params = new URLSearchParams(location.search);
+    if (params.has('a') || params.has('b')) {
+      const a = params.get('a')?.split(',') ?? [], b = params.get('b')?.split(',') ?? [];
+      const ids = [...a, ...b];
+      if (a.length !== 6 || b.length !== 6 || new Set(ids).size !== 12
+        || ids.some(id => !/^[1-9]\d*$/.test(id) || !heroes.some(hero => String(hero.id) === id))) {
+        error.textContent = 'This lineup link contains invalid or unsupported heroes. Select teams manually.'; error.hidden = false;
+      } else { selects.forEach((select, i) => { select.value = ids[i]; }); update(); }
+    }
   } catch (failure) { error.textContent = failure.message; error.hidden = false; status.textContent = 'Hero catalog unavailable'; }
 }
 loadHeroes();
+async function loadEvidence() {
+  const target = document.querySelector('#model-evidence');
+  try {
+    const response = await fetch('/api/evidence', { signal: AbortSignal.timeout(15000) });
+    if (!response.ok) throw new Error();
+    const evidence = await response.json(), report = evidence.reliability;
+    target.textContent = report
+      ? `Model ${evidence.modelVersion} · ${report.count.toLocaleString()} later matches · ${(report.accuracy * 100).toFixed(1)}% winner accuracy · ${(report.coverage * 100).toFixed(0)}% coverage. Log loss ${report.logLoss.toFixed(4)}; Brier score ${report.brierScore.toFixed(4)}. Evaluation updated ${new Date(report.updatedAt).toLocaleString()}. ${report.nextAnnouncement ? 'A later gameplay announcement limits this evaluation period.' : 'Patch deployment boundaries remain unverified.'}`
+      : `Model ${evidence.modelVersion}. Matching prospective evidence is unavailable for this version.`;
+  } catch { target.textContent = 'Model evidence is currently unavailable. Predictions remain experimental.'; }
+}
+loadEvidence();

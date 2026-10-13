@@ -13,7 +13,8 @@
     <section class="intro"><p class="eyebrow">THE LINEUP IS THE INPUT</p><h1>Compare the compositions.</h1><p>Select both teams to estimate who has the advantage. Hero choices only—no player profiles or personal win rates.</p></section>
     <form id="matchup">
       <div class="teams"><fieldset id="teamA"><legend><span>01</span> Your team</legend></fieldset><fieldset id="teamB"><legend><span>02</span> Opposing team</legend></fieldset></div>
-      <div class="controls"><button id="compare" disabled>Compare teams <span aria-hidden="true">→</span></button><button type="reset" class="secondary">Clear picks</button><p id="selection-status" role="status">Loading heroes…</p></div>
+      <div class="controls"><button id="compare" disabled>Compare teams <span aria-hidden="true">→</span></button><button type="button" id="swap" class="secondary" disabled>Swap teams</button><button type="button" id="share" class="secondary" disabled>Share lineup</button><button type="reset" class="secondary">Clear picks</button><p id="selection-status" role="status">Loading heroes…</p></div>
+      <p id="share-status" role="status" hidden></p><label id="share-link-label" hidden>Lineup link <input id="share-link" readonly></label>
     </form>
     <p id="error" role="alert" hidden></p>
     <section id="result" aria-live="polite" aria-atomic="true" hidden>
@@ -23,7 +24,7 @@
       <p class="result-note">This first model compares learned hero strength. It does not yet measure specific synergies or counters.</p>
       <details><summary>How much training data supports these heroes?</summary><table><caption>Appearances in the training sample, not individual player performance</caption><thead><tr><th scope="col">Hero</th><th scope="col">Matches</th></tr></thead><tbody id="support"></tbody></table></details>
     </section>
-    <aside class="research"><p class="eyebrow">A STARTING POINT, STILL UNDER TEST</p><p>These probabilities are exploratory. The current roster-aligned model was evaluated on a short, later sample; future accuracy and calibration are still unverified. A percentage is an estimate, not a guarantee.</p></aside>
+    <aside class="research"><p class="eyebrow">THE EVIDENCE BEHIND THE ESTIMATE</p><p id="model-evidence">Loading model evidence…</p><p>Composition only: player skill, personal history and live gameplay are excluded. Supporting a hero does not mean this exact twelve-hero matchup has substantial historical evidence. Exact percentages and future-patch performance remain uncertain.</p></aside>
   </main>
   <footer>Manual composition comparison <span>Independent community project · Not affiliated with Valve</span></footer>
 </body>

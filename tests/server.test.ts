@@ -12,6 +12,10 @@ test('browser API predicts valid teams and rejects bad input and private file pa
   const address = server.address();
   if (!address || typeof address === 'string') throw new Error('Server did not start.');
   const base = `http://127.0.0.1:${address.port}`;
+  const evidence = await (await fetch(`${base}/api/evidence`)).json();
+  assert.match(evidence.modelVersion, /^[a-f0-9]{12}$/);
+  assert.equal(evidence.reliability, null);
+  assert.ok(!JSON.stringify(evidence).includes('weights'));
   const post = (body: unknown) => fetch(`${base}/api/predict`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
   const response = await post({ teamA, teamB });
   assert.equal(response.status, 200);
