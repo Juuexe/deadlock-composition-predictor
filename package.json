@@ -11,6 +11,8 @@
     "train": "node src/train.ts",
     "evaluate:later": "node src/evaluate-later.ts",
     "reliability:check": "node src/check-reliability.ts",
+    "calibration:prepare": "node src/prepare-calibration.ts",
+    "calibration:test": "node src/test-calibration.ts",
     "research:prepare": "node src/prepare-research.ts",
     "research:train": "node src/train-research.ts",
     "research:test": "node src/test-research.ts",
