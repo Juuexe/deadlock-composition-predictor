@@ -19,6 +19,7 @@
     "research:nonlinear": "node src/train-nonlinear.ts",
     "predict": "node src/predict.ts",
     "dev": "node src/serve.ts",
+    "model:archive": "node src/release-model.ts",
     "test": "node --test tests/*.test.ts",
     "typecheck": "tsc --noEmit",
     "check": "npm run typecheck && npm test"

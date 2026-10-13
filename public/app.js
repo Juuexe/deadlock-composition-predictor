@@ -5,6 +5,7 @@ const error = document.querySelector('#error');
 const result = document.querySelector('#result');
 const selects = [];
 let heroes = [], pending = false;
+let draftRequest;
 
 function update() {
   const chosen = selects.map(select => select.value).filter(Boolean);
@@ -21,13 +22,39 @@ function update() {
   compare.disabled = pending || chosen.length !== 12 || new Set(chosen).size !== 12;
   document.querySelector('#swap').disabled = pending || selects.length !== 12 || !chosen.length;
   document.querySelector('#share').disabled = compare.disabled;
+  document.querySelector('#recommend').disabled = pending || selects.length !== 12 || selects.slice(0,6).every(select=>select.value);
   status.textContent = pending ? 'Comparing compositions…' : `${chosen.length} of 12 heroes selected`;
 }
 
 function hideShare() { document.querySelector('#share-status').hidden = true; document.querySelector('#share-link-label').hidden = true; }
+function clearDraft() { draftRequest?.abort(); document.querySelector('#draft-list').replaceChildren(); document.querySelector('#draft-status').textContent = ''; }
+form.addEventListener('change', clearDraft);
+form.addEventListener('reset', clearDraft);
+document.querySelector('#recommend').addEventListener('click', async () => {
+  draftRequest?.abort(); const request = new AbortController(); draftRequest=request;
+  const message=document.querySelector('#draft-status'), list=document.querySelector('#draft-list');
+  list.replaceChildren(); message.textContent='Evaluating possible draft completions…';
+  try {
+    const response=await fetch('/api/draft',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({teamA:selects.slice(0,6).map(s=>Number(s.value)).filter(Boolean),teamB:selects.slice(6).map(s=>Number(s.value)).filter(Boolean)}),
+      signal:AbortSignal.any([request.signal,AbortSignal.timeout(15000)])});
+    const result=await response.json(); if(!response.ok) throw new Error(result.error);
+    if(request.signal.aborted) return;
+    for(const entry of result.recommendations) {
+      const item=document.createElement('li'), button=document.createElement('button'); button.type='button'; button.className='secondary';
+      button.textContent=`${heroes.find(h=>h.id===entry.heroId)?.name ?? entry.heroId} · ${(entry.probability*100).toFixed(1)}% average estimate`;
+      button.addEventListener('click',()=>{ const slot=selects.slice(0,6).find(s=>!s.value); if(!slot||pending)return;
+        const search=document.querySelector('[data-team=teamA]');search.value='';filterHeroes(search);
+        slot.value=String(entry.heroId);slot.dispatchEvent(new Event('change',{bubbles:true})); });
+      item.append(button);list.append(item);
+    }
+    message.textContent='Select a suggestion to fill your next empty slot. Assumes uniform remaining picks; no player data.';
+  } catch(failure) { if(!request.signal.aborted) message.textContent=failure.message; }
+});
 form.addEventListener('change', () => { result.hidden = true; error.hidden = true; hideShare(); update(); });
 form.addEventListener('reset', () => { result.hidden = true; error.hidden = true; hideShare(); history.replaceState(null, '', location.pathname); requestAnimationFrame(() => { document.querySelectorAll('.hero-search').forEach(input => filterHeroes(input)); update(); }); });
 document.querySelector('#swap').addEventListener('click', () => {
+  clearDraft();
   const values = selects.map(select => select.value);
   document.querySelectorAll('.hero-search').forEach(input => { input.value = ''; filterHeroes(input); });
   selects.forEach((select, index) => { select.value = values[(index + 6) % 12]; });

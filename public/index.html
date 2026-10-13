@@ -17,6 +17,7 @@
       <p id="share-status" role="status" hidden></p><label id="share-link-label" hidden>Lineup link <input id="share-link" readonly></label>
     </form>
     <p id="error" role="alert" hidden></p>
+    <details id="draft"><summary>Draft assistance · experimental</summary><p>Leave at least one slot open on your team. Estimates average 256 possible completions, assuming remaining heroes are picked uniformly. Recommendations have not been independently validated.</p><button type="button" id="recommend" class="secondary" disabled>Recommend next hero</button><p id="draft-status" role="status"></p><ol id="draft-list"></ol></details>
     <section id="result" aria-live="polite" aria-atomic="true" hidden>
       <p class="eyebrow">EXPERIMENTAL ESTIMATE</p><h2 id="result-title"></h2>
       <div class="probabilities"><div><span>Your team</span><strong id="chance-a"></strong></div><div><span>Opposing team</span><strong id="chance-b"></strong></div></div>
@@ -26,6 +27,7 @@
     </section>
     <aside class="research"><p class="eyebrow">THE EVIDENCE BEHIND THE ESTIMATE</p><p id="model-evidence">Loading model evidence…</p><p>Composition only: player skill, personal history and live gameplay are excluded. Supporting a hero does not mean this exact twelve-hero matchup has substantial historical evidence. Exact percentages and future-patch performance remain uncertain.</p></aside>
   </main>
+  <section class="methodology"><details><summary>Methodology and limitations</summary><p>Match compositions and completed outcomes come from the independent <a href="https://api.deadlock-api.com/docs" target="_blank" rel="noopener noreferrer">Deadlock API</a>. The predictor uses hero choices only, without accounts, ranks, personal histories, items or live gameplay. Hero appearances describe training support, not evidence for this exact matchup.</p><p>The active model learns regularized hero associations from earlier matches. It was compared on later matches without retraining. Accuracy measures winner picking; log loss and Brier score measure probability quality. Lower probability scores are better. Availability sampling, hourly API caps and uncertain patch boundaries limit generalization. A 58% estimate is not a guarantee or proof of precisely calibrated 58% odds.</p><p>Draft assistance samples uniformly from remaining supported heroes. It is an experimental ranking under that assumption, not a validated counter-pick or evidence that choosing a hero causes a win.</p><p>Automatic match-start detection is deferred: the public active-match endpoint covers only the top 200 watch-tab matches, so it cannot guarantee detection of every player's match within five seconds.</p></details></section>
   <footer>Manual composition comparison <span>Independent community project · Not affiliated with Valve</span></footer>
 </body>
 </html>

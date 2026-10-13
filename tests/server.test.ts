@@ -31,7 +31,13 @@ test('browser API predicts valid teams and rejects bad input and private file pa
   assert.equal((await fetch(`${base}/api/predict`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: 'x'.repeat(17000) })).status, 413);
   assert.equal((await fetch(`${base}/models/baseline.json`)).status, 404);
   assert.equal((await fetch(`${base}/.git/config`)).status, 404);
+  assert.equal((await fetch(`${base}/api/health`)).status,200);
+  const draft = await fetch(`${base}/api/draft`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({teamA:teamA.slice(0,5),teamB})});
+  assert.equal(draft.status,200);
+  assert.equal((await draft.json()).recommendations[0].heroId,6);
   const page = await fetch(base);
   assert.equal(page.status, 200);
   assert.ok(page.headers.get('content-security-policy')?.includes("default-src 'self'"));
+  for(let i=0;i<61;i++) await post({teamA,teamB});
+  assert.equal((await post({teamA,teamB})).status,429);
 });
