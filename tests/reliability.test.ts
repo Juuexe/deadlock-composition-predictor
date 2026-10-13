@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { reliabilityReport, wilson } from '../src/reliability.ts';
+import { reliabilityReport, wilson, beforeAnnouncement } from '../src/reliability.ts';
 import type { HeroModel } from '../src/model.ts';
 import type { TrainingMatch } from '../src/data.ts';
 import { mkdtemp, mkdir, readFile, writeFile, rm } from 'node:fs/promises';
@@ -34,6 +34,13 @@ test('empty reliability evidence remains pending and uncertainty is wide for sma
   const interval = wilson(1, 1)!;
   assert.ok(interval.lower < 0.21);
   assert.ok(Math.abs(interval.upper - 1) < 1e-12);
+});
+test('late announcements exclude transition matches conservatively without deleting the dataset', () => {
+  const boundary = '2026-10-10T07:00:00.000Z';
+  const rows = [row, {...row, matchId:2, startedAt:'2026-10-10T04:00:00.000Z'}];
+  assert.equal(beforeAnnouncement(rows, boundary).length, 1);
+  assert.equal(rows.length, 2);
+  assert.equal(beforeAnnouncement(rows, null).length, 2);
 });
 
 test('collector saves sanitized fresh windows, resumes without duplicates and rejects changed scoring code', async () => {

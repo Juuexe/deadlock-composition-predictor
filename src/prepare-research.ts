@@ -10,6 +10,11 @@ import { parsePlan } from './research-files.ts';
 
 const announcements = parseAnnouncements(await getJson('https://api.deadlock-api.com/v2/patches'));
 const end = Math.floor(Date.now() / 1000) - 900;
+const evaluationIds = new Set<number>();
+try {
+  const reliability = JSON.parse(await readFile('data/reliability/matches.json', 'utf8'));
+  for (const row of parseMatches(reliability.rows)) evaluationIds.add(row.matchId);
+} catch (error) { if (!(error instanceof Error && 'code' in error && error.code === 'ENOENT')) throw error; }
 let unseenSince = '';
 for (const path of ['data/matches.json', 'data/prior-sample.json', 'data/history-14days.json']) {
   try {
@@ -48,6 +53,7 @@ for (let i = 0; i < windows.length; i++) {
   const accepted: ResearchRow[] = [];
   for (const value of raw) {
     const match = normalizeMatch(value);
+    if (match && evaluationIds.has(match.matchId)) continue;
     if (!match || !value || typeof value !== 'object' || !('duration_s' in value)
       || !Number.isSafeInteger(value.duration_s) || Number(value.duration_s) <= 0 || Number(value.duration_s) > 7200) continue;
     const start = Date.parse(match.startedAt) / 1000;

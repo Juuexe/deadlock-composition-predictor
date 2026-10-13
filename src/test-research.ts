@@ -3,6 +3,8 @@ import { createHash } from 'node:crypto';
 import { loadPlan, loadPartition, claimTest } from './research-files.ts';
 import { evaluate, parseModel, predict } from './model.ts';
 import { saveJson } from './files.ts';
+import { getJson } from './api.ts';
+import { parseAnnouncements } from './research.ts';
 
 const plan = await loadPlan();
 const text = await readFile(`${plan.directory}/candidate.json`, 'utf8');
@@ -11,6 +13,9 @@ if (!frozen || typeof frozen !== 'object' || !('planId' in frozen) || frozen.pla
   || !('model' in frozen) || !('incumbent' in frozen) || !('scoringCodeSha256' in frozen)
   || frozen.scoringCodeSha256 !== createHash('sha256').update(await readFile('src/model.ts')).digest('hex')) throw new Error('Candidate or scoring code changed; do not reuse this final test.');
 const model = parseModel(frozen.model), incumbent = parseModel(frozen.incumbent);
+const boundary = parseAnnouncements(await getJson('https://api.deadlock-api.com/v2/patches')).find(event => event.at > plan.currentPeriod
+  && Date.parse(event.at) - 3600000 <= Date.parse(plan.partitions.test.last) + 7200000);
+if (boundary) throw new Error('A gameplay announcement may intersect the final-test period. Test NOT OPENED; preserve this experiment and prepare another.');
 await claimTest(plan, createHash('sha256').update(text).digest('hex'));
 const rows = await loadPartition(plan, 'test');
 const supported = rows.filter(row => [...row.teamA, ...row.teamB].every(hero => Object.hasOwn(model.weights, hero) && Object.hasOwn(incumbent.weights, hero)));

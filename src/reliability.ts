@@ -1,6 +1,14 @@
 import { evaluate, parseMatches, predict, type HeroModel } from './model.ts';
 import type { TrainingMatch } from './data.ts';
 
+export function beforeAnnouncement(rows: TrainingMatch[], at: string | null) {
+  if (!at) return rows;
+  if (!Number.isFinite(Date.parse(at))) throw new Error('Invalid announcement boundary.');
+  // Legacy rows lack completion times: allow maximum two-hour duration plus one-hour transition buffer.
+  const cutoff = new Date(Date.parse(at) - 10800000).toISOString();
+  return rows.filter(row => row.startedAt < cutoff);
+}
+
 export function wilson(wins: number, count: number) {
   if (!count) return null;
   const p = wins / count, z2 = 1.96 ** 2;

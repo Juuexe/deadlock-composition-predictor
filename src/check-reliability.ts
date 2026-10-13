@@ -6,7 +6,7 @@ import { normalizeMatch, type TrainingMatch } from './data.ts';
 import { parseModel, laterMatches, type HeroModel } from './model.ts';
 import { saveJson } from './files.ts';
 import { parseAnnouncements } from './research.ts';
-import { reliabilityReport } from './reliability.ts';
+import { reliabilityReport, beforeAnnouncement } from './reliability.ts';
 
 const directory = 'data/reliability';
 await mkdir(directory, { recursive: true });
@@ -65,11 +65,13 @@ try {
     await saveJson(`${directory}/matches.json`, state);
     console.log(`Saved ${accepted.length} fresh matches from ${new Date(minimum * 1000).toISOString()}.`);
   }
+  const evaluationRows = beforeAnnouncement(state.rows, next?.at ?? null);
   const report = { generatedAt: new Date().toISOString(), frozenAt: snapshot.frozenAt, codeSha256,
     modelSha256: createHash('sha256').update(JSON.stringify(model)).digest('hex'), modelKind: model.kind,
     timeZone: 'America/Chicago', nextAnnouncement: next ?? null, windows: state.windows,
-    ...reliabilityReport(model, state.rows),
-    status: state.rows.length ? 'Evidence accumulating; no reliability certification.' : 'Waiting for fresh completed sampling windows after freeze.',
+    ...reliabilityReport(model, evaluationRows),
+    retainedMatches: state.rows.length, transitionExcluded: state.rows.length - evaluationRows.length,
+    status: next ? 'Evaluation period ended at a gameplay announcement; frozen data retained.' : state.rows.length ? 'Evidence accumulating; no reliability certification.' : 'Waiting for fresh completed sampling windows after freeze.',
     limitations: 'Fixed 2500-match hourly availability samples; capped windows and delayed API ingestion can bias results. Daily and calibration Wilson intervals are approximate and assume independent matches. Ten-percentage-point calibration bins do not establish exact 58% calibration. Stop one hour before the next identified official gameplay announcement; deployment boundaries and unannounced updates remain unverified. Repeated checks are descriptive, not significance tests. These matches are evaluation-only; never use them to train or tune this predictor.' };
   await saveJson('docs/reliability-evaluation.json', report);
   console.log(JSON.stringify({ frozenAt: report.frozenAt, matches: report.total, days: report.days.length, status: report.status }, null, 2));
