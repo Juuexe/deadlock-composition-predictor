@@ -11,6 +11,13 @@ function update() {
   for (const select of selects) for (const option of select.options) {
     option.disabled = Boolean(option.value && option.value !== select.value && chosen.includes(option.value));
   }
+  for (const select of selects) {
+    const image = select.parentElement.querySelector('img');
+    const hero = heroes.find(hero => String(hero.id) === select.value);
+    image.hidden = !hero?.portrait;
+    if (hero?.portrait && image.getAttribute('src') !== hero.portrait) image.src = hero.portrait;
+  }
+  document.querySelectorAll('.hero-search').forEach(input => { input.disabled = pending; });
   compare.disabled = pending || chosen.length !== 12 || new Set(chosen).size !== 12;
   document.querySelector('#swap').disabled = pending || selects.length !== 12 || !chosen.length;
   document.querySelector('#share').disabled = compare.disabled;
@@ -19,9 +26,10 @@ function update() {
 
 function hideShare() { document.querySelector('#share-status').hidden = true; document.querySelector('#share-link-label').hidden = true; }
 form.addEventListener('change', () => { result.hidden = true; error.hidden = true; hideShare(); update(); });
-form.addEventListener('reset', () => { result.hidden = true; error.hidden = true; hideShare(); history.replaceState(null, '', location.pathname); requestAnimationFrame(update); });
+form.addEventListener('reset', () => { result.hidden = true; error.hidden = true; hideShare(); history.replaceState(null, '', location.pathname); requestAnimationFrame(() => { document.querySelectorAll('.hero-search').forEach(input => filterHeroes(input)); update(); }); });
 document.querySelector('#swap').addEventListener('click', () => {
   const values = selects.map(select => select.value);
+  document.querySelectorAll('.hero-search').forEach(input => { input.value = ''; filterHeroes(input); });
   selects.forEach((select, index) => { select.value = values[(index + 6) % 12]; });
   result.hidden = true; hideShare(); update();
 });
@@ -82,14 +90,25 @@ async function loadHeroes() {
     const response = await fetch('/api/heroes', { signal: AbortSignal.timeout(15000) });
     if (!response.ok) throw new Error('Could not load the hero catalog. Refresh to retry.');
     heroes = (await response.json()).sort((a, b) => a.name.localeCompare(b.name));
-    for (const team of ['teamA', 'teamB']) for (let slot = 1; slot <= 6; slot++) {
+    for (const team of ['teamA', 'teamB']) {
+      const searchLabel = document.createElement('label'); searchLabel.className = 'search-label';
+      searchLabel.textContent = `Search heroes for ${team === 'teamA' ? 'your team' : 'opposing team'}`;
+      const search = document.createElement('input'); search.type = 'search'; search.className = 'hero-search'; search.placeholder = 'Type a hero name';
+      search.dataset.team = team; search.addEventListener('input', () => filterHeroes(search));
+      searchLabel.append(search); document.getElementById(team).append(searchLabel);
+      const matches = document.createElement('p'); matches.className = 'search-matches'; matches.id = `${team}-matches`; matches.setAttribute('role', 'status');
+      document.getElementById(team).append(matches);
+      for (let slot = 1; slot <= 6; slot++) {
       const wrapper = document.createElement('div'); wrapper.className = 'pick';
       const label = document.createElement('label'); label.htmlFor = `${team}-${slot}`; label.textContent = `Pick ${slot}`;
       const select = document.createElement('select'); select.id = label.htmlFor; select.required = true;
       select.setAttribute('aria-label', `${team === 'teamA' ? 'Your team' : 'Opposing team'} hero ${slot}`);
       select.append(new Option('Choose a hero', ''));
       for (const hero of heroes) select.append(new Option(hero.name, String(hero.id)));
-      wrapper.append(label, select); document.getElementById(team).append(wrapper); selects.push(select);
+      const image = document.createElement('img'); image.alt = ''; image.width = 40; image.height = 40; image.hidden = true; image.referrerPolicy = 'no-referrer';
+      image.addEventListener('error', () => { image.hidden = true; });
+      wrapper.append(label, image, select); document.getElementById(team).append(wrapper); selects.push(select);
+      }
     }
     update();
     const params = new URLSearchParams(location.search);
@@ -103,6 +122,18 @@ async function loadHeroes() {
     }
   } catch (failure) { error.textContent = failure.message; error.hidden = false; status.textContent = 'Hero catalog unavailable'; }
 }
+function filterHeroes(input) {
+  const query = input.value.trim().toLocaleLowerCase();
+  const matches = heroes.filter(hero => hero.name.toLocaleLowerCase().includes(query));
+  for (const select of selects.filter(select => select.id.startsWith(`${input.dataset.team}-`))) {
+    const selected = select.value;
+    select.replaceChildren(new Option('Choose a hero', ''));
+    for (const hero of heroes) if (matches.includes(hero) || String(hero.id) === selected) select.append(new Option(hero.name, String(hero.id)));
+    select.value = selected;
+  }
+  document.getElementById(`${input.dataset.team}-matches`).textContent = query ? `${matches.length} matching heroes. Current picks stay visible.` : '';
+  update();
+}
 loadHeroes();
 async function loadEvidence() {
   const target = document.querySelector('#model-evidence');
@@ -113,6 +144,7 @@ async function loadEvidence() {
     target.textContent = report
       ? `Model ${evidence.modelVersion} · ${report.count.toLocaleString()} later matches · ${(report.accuracy * 100).toFixed(1)}% winner accuracy · ${(report.coverage * 100).toFixed(0)}% coverage. Log loss ${report.logLoss.toFixed(4)}; Brier score ${report.brierScore.toFixed(4)}. Evaluation updated ${new Date(report.updatedAt).toLocaleString()}. ${report.nextAnnouncement ? 'A later gameplay announcement limits this evaluation period.' : 'Patch deployment boundaries remain unverified.'}`
       : `Model ${evidence.modelVersion}. Matching prospective evidence is unavailable for this version.`;
+    if (evidence.unsupportedHeroes?.length) target.textContent += ` Current catalog heroes not supported by this model: ${evidence.unsupportedHeroes.join(', ')}. These heroes cannot be selected; roster coverage needs re-evaluation.`;
   } catch { target.textContent = 'Model evidence is currently unavailable. Predictions remain experimental.'; }
 }
 loadEvidence();

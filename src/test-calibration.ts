@@ -3,6 +3,8 @@ import { createHash } from 'node:crypto';
 import { parseMatches, parseModel, predict, evaluate } from './model.ts';
 import { adjustProbability } from './calibration.ts';
 import { saveJson } from './files.ts';
+import { getJson } from './api.ts';
+import { parseAnnouncements } from './research.ts';
 
 const directory = 'data/calibration-experiment';
 try { await access(`${directory}/test-opened.json`); throw new Error('Calibration final test already opened; no retuning or repeat testing.'); }
@@ -13,6 +15,11 @@ const base = parseModel(candidate.base), incumbent = parseModel(candidate.incumb
 adjustProbability(0.6, candidate.curve);
 const codeHash = createHash('sha256').update(await readFile('src/model.ts')).update(await readFile('src/calibration.ts')).digest('hex');
 if (candidate.scoringCodeSha256 !== codeHash || !Number.isFinite(Date.parse(candidate.frozenAt))) throw new Error('Candidate metadata or scoring code changed.');
+const plan = JSON.parse(await readFile('data/research-current.json', 'utf8'));
+if (plan.id !== candidate.planId) throw new Error('Calibration source plan changed.');
+const announcement = parseAnnouncements(await getJson('https://api.deadlock-api.com/v2/patches')).find(event => event.at > plan.currentPeriod
+  && Date.parse(event.at) - 3600000 < Date.parse(candidate.frozenAt) + 86400000);
+if (announcement) throw new Error(`Calibration comparison blocked by gameplay announcement: ${announcement.title} (${announcement.at}). Test NOT OPENED. Preserve this experiment; prepare a separately planned roster-period comparison.`);
 const input = JSON.parse(await readFile('data/reliability/matches.json', 'utf8'));
 const rows = parseMatches(input.rows).filter(row => row.startedAt > candidate.frozenAt
   && Date.parse(row.startedAt) < Date.parse(candidate.frozenAt) + 86400000);

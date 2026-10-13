@@ -419,6 +419,7 @@
       }
     }
   ],
-  "status": "Frozen for future-only comparison; not deployed.",
-  "limitations": "Previously used development partitions are exploratory, not an independent performance test. No spent final test or reliability label was used for fitting. The base is trained on historical training only, distinct from the newer incumbent. Fresh 24-hour comparison is required; gains are not established."
+  "status": "Blocked by the October 13 gameplay announcement and roster change; final test unopened, candidate preserved, not deployed.",
+  "limitations": "Previously used development partitions are exploratory, not an independent performance test. No spent final test or reliability label was used for fitting. The base is trained on historical training only, distinct from the newer incumbent. Fresh 24-hour comparison is required; gains are not established.",
+  "boundary": "2026-10-13T20:59:55.000Z"
 }

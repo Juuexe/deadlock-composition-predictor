@@ -2,6 +2,7 @@ import { mkdir } from 'node:fs/promises';
 import { normalizeMatch } from './data.ts';
 import { saveJson } from './files.ts';
 import { getJson } from './api.ts';
+import { parseHeroes } from './heroes.ts';
 
 const limit = Number(process.argv[2] ?? 1000);
 if (!Number.isSafeInteger(limit) || limit < 1 || limit > 10000) throw new Error('Match limit must be an integer from 1 to 10000.');
@@ -9,11 +10,12 @@ const days = Number(process.argv[3] ?? 1);
 if (!Number.isSafeInteger(days) || days < 1 || days > 14) throw new Error('Days must be an integer from 1 to 14.');
 const heroes = await getJson('https://api.deadlock-api.com/v1/assets/heroes?only_active=true');
 if (!Array.isArray(heroes) || !heroes.length) throw new Error('Invalid or empty hero catalog.');
-const catalog = heroes.map((hero: unknown) => {
+const catalog = parseHeroes(heroes.map((hero: unknown) => {
   if (!hero || typeof hero !== 'object' || !('id' in hero) || !('name' in hero)
     || !Number.isSafeInteger(hero.id) || Number(hero.id) <= 0 || typeof hero.name !== 'string') throw new Error('Invalid hero catalog entry.');
-  return { id: hero.id, name: hero.name };
-});
+  const portrait = 'images' in hero && hero.images && typeof hero.images === 'object' && 'icon_image_small_webp' in hero.images ? hero.images.icon_image_small_webp : undefined;
+  return { id: hero.id, name: hero.name, ...(portrait ? { portrait } : {}) };
+}));
 const url = new URL('https://api.deadlock-api.com/v1/matches/metadata');
 url.search = new URLSearchParams({
   limit: String(limit), game_mode: 'normal', match_mode: 'ranked,unranked',

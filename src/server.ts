@@ -1,6 +1,7 @@
 import { createServer, type IncomingMessage } from 'node:http';
 import { readFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
+import { parseHeroes, type Hero } from './heroes.ts';
 import { predict, validateComposition, type HeroModel } from './model.ts';
 
 class HttpError extends Error {
@@ -25,10 +26,11 @@ function readJson(request: IncomingMessage): Promise<unknown> {
   });
 }
 
-export function createApp(model: HeroModel, heroes: { id: number; name: string }[]) {
+export function createApp(model: HeroModel, inputHeroes: Hero[]) {
+  const heroes = parseHeroes(inputHeroes);
   const modelHash = createHash('sha256').update(JSON.stringify(model)).digest('hex');
   const server = createServer(async (request, response) => {
-    response.setHeader('Content-Security-Policy', "default-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'");
+    response.setHeader('Content-Security-Policy', "default-src 'self'; img-src 'self' https://assets-bucket.deadlock-api.com; frame-ancestors 'none'; base-uri 'none'; form-action 'self'");
     response.setHeader('X-Content-Type-Options', 'nosniff');
     response.setHeader('Cache-Control', 'no-store');
     const json = (status: number, value: unknown) => {
@@ -49,7 +51,8 @@ export function createApp(model: HeroModel, heroes: { id: number; name: string }
               coverage: report.coverage, nextAnnouncement: report.nextAnnouncement ? { at: report.nextAnnouncement.at, title: report.nextAnnouncement.title } : null };
           }
         } catch { /* A missing or mismatched report must not imply evidence for this model. */ }
-        json(200, { modelVersion: modelHash.slice(0, 12), modelKind: model.kind, reliability });
+        json(200, { modelVersion: modelHash.slice(0, 12), modelKind: model.kind, reliability,
+          unsupportedHeroes: heroes.filter(hero => !Object.hasOwn(model.weights, hero.id)).map(hero => hero.name) });
       } else if (request.method === 'GET' && path === '/api/heroes') {
         json(200, heroes.filter(hero => Object.hasOwn(model.weights, hero.id)));
       } else if (request.method === 'POST' && path === '/api/predict') {
