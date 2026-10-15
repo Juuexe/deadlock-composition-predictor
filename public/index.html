@@ -12,9 +12,9 @@
   <a href="#main" class="skip-link">Skip to lineup comparison</a>
   <header><a href="/" class="brand">DEADLOCK <span>COMPOSITION LAB</span></a><span class="badge">Experimental</span></header>
   <main id="main">
-    <section class="intro"><h1>Compare the compositions.</h1><p>Select both teams to estimate who has the advantage. Hero choices only—no player profiles or personal win rates.</p></section>
+    <section class="intro"><h1>Pick your crew.<br><em>Size up the fight.</em></h1><p>Select both teams to estimate who has the advantage. Hero choices only—no player profiles or personal win rates.</p></section>
     <form id="matchup">
-      <div class="teams"><fieldset id="teamA"><legend><span>01</span> Your team</legend></fieldset><fieldset id="teamB"><legend><span>02</span> Opposing team</legend></fieldset></div>
+      <div class="teams"><span class="versus" aria-hidden="true">VS</span><fieldset id="teamA"><legend>Your team <small>YOUR SIX HEROES</small></legend></fieldset><fieldset id="teamB"><legend>Opposing team <small>THE OTHER SIDE</small></legend></fieldset></div>
       <div class="controls"><button id="compare" disabled>Compare teams <span aria-hidden="true">→</span></button><button type="button" id="swap" class="secondary" disabled>Swap teams</button><button type="button" id="share" class="secondary" disabled>Share lineup</button><button type="reset" class="secondary">Clear picks</button><p id="selection-status" role="status">Loading heroes…</p></div>
       <p id="share-status" role="status" hidden></p><label id="share-link-label" hidden>Lineup link <input id="share-link" readonly></label>
     </form>
