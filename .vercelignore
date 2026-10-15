@@ -1,0 +1,6 @@
+data/
+models/
+.venv/
+work/
+research/
+.git/

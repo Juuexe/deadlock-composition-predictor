@@ -1,0 +1,425 @@
+{
+  "frozenAt": "2026-10-13T21:09:01.058Z",
+  "planId": "0c608502-ca14-4ae4-8857-36454a444f76",
+  "trainCount": 5474,
+  "fitCount": 957,
+  "selectionCount": 392,
+  "selected": {
+    "slope": 1.25,
+    "compression": 0
+  },
+  "comparisons": [
+    {
+      "curve": {
+        "slope": 1,
+        "compression": 0
+      },
+      "fit": {
+        "count": 957,
+        "logLoss": 0.6338423039021717,
+        "brierScore": 0.22166477194725934,
+        "accuracy": 0.6311389759665622,
+        "calibration": [
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "count": 9,
+            "predicted": 0.18247457362673122,
+            "observed": 0.2222222222222222
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "count": 67,
+            "predicted": 0.2623037496072382,
+            "observed": 0.2835820895522388
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "count": 159,
+            "predicted": 0.3553218267644944,
+            "observed": 0.29559748427672955
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "count": 234,
+            "predicted": 0.45178245423873375,
+            "observed": 0.3974358974358974
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "count": 219,
+            "predicted": 0.5455728589919139,
+            "observed": 0.4703196347031963
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "count": 166,
+            "predicted": 0.6508160281058144,
+            "observed": 0.6626506024096386
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "count": 93,
+            "predicted": 0.7384398939141282,
+            "observed": 0.7956989247311828
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "count": 10,
+            "predicted": 0.8336728657035384,
+            "observed": 0.9
+          }
+        ]
+      },
+      "selection": {
+        "count": 392,
+        "logLoss": 0.637128230287727,
+        "brierScore": 0.2232825049431527,
+        "accuracy": 0.6224489795918368,
+        "calibration": [
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "count": 2,
+            "predicted": 0.1832647799927813,
+            "observed": 0.5
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "count": 32,
+            "predicted": 0.25685811272965126,
+            "observed": 0.1875
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "count": 61,
+            "predicted": 0.35020824902555564,
+            "observed": 0.3770491803278688
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "count": 101,
+            "predicted": 0.4499738993792534,
+            "observed": 0.40594059405940597
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "count": 92,
+            "predicted": 0.5535860423512967,
+            "observed": 0.4673913043478261
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "count": 69,
+            "predicted": 0.6448231842326202,
+            "observed": 0.6956521739130435
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "count": 31,
+            "predicted": 0.7394676410736198,
+            "observed": 0.8064516129032258
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "count": 4,
+            "predicted": 0.8203561194185416,
+            "observed": 0.75
+          }
+        ]
+      }
+    },
+    {
+      "curve": {
+        "slope": 1.25,
+        "compression": 0
+      },
+      "fit": {
+        "count": 957,
+        "logLoss": 0.632158161389445,
+        "brierScore": 0.2210057618657922,
+        "accuracy": 0.6311389759665622,
+        "calibration": [
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "count": 29,
+            "predicted": 0.16716716328435835,
+            "observed": 0.20689655172413793
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "count": 96,
+            "predicted": 0.25400016602607817,
+            "observed": 0.2604166666666667
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "count": 158,
+            "predicted": 0.3563816180851571,
+            "observed": 0.3227848101265823
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "count": 186,
+            "predicted": 0.45335991115052277,
+            "observed": 0.42473118279569894
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "count": 188,
+            "predicted": 0.5475502516122548,
+            "observed": 0.46808510638297873
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "count": 134,
+            "predicted": 0.6514220849147717,
+            "observed": 0.5895522388059702
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "count": 129,
+            "predicted": 0.7456644656575336,
+            "observed": 0.7441860465116279
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "count": 35,
+            "predicted": 0.8345256705551534,
+            "observed": 0.8857142857142857
+          },
+          {
+            "lower": 0.9,
+            "upper": 1,
+            "count": 2,
+            "predicted": 0.9124242339427547,
+            "observed": 1
+          }
+        ]
+      },
+      "selection": {
+        "count": 392,
+        "logLoss": 0.6358449026350339,
+        "brierScore": 0.22288437447894524,
+        "accuracy": 0.6224489795918368,
+        "calibration": [
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "count": 14,
+            "predicted": 0.16955616974996632,
+            "observed": 0.07142857142857142
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "count": 38,
+            "predicted": 0.2543552129566023,
+            "observed": 0.23684210526315788
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "count": 62,
+            "predicted": 0.34798034480976014,
+            "observed": 0.41935483870967744
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "count": 82,
+            "predicted": 0.449659522270066,
+            "observed": 0.4268292682926829
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "count": 72,
+            "predicted": 0.5542937555561849,
+            "observed": 0.4722222222222222
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "count": 67,
+            "predicted": 0.6439899515592731,
+            "observed": 0.5970149253731343
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "count": 45,
+            "predicted": 0.7474058266891354,
+            "observed": 0.7777777777777778
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "count": 12,
+            "predicted": 0.8387301658166456,
+            "observed": 0.8333333333333334
+          }
+        ]
+      }
+    },
+    {
+      "curve": {
+        "slope": 1.25,
+        "compression": 0.1
+      },
+      "fit": {
+        "count": 957,
+        "logLoss": 0.6323760422232212,
+        "brierScore": 0.22107551439916617,
+        "accuracy": 0.6311389759665622,
+        "calibration": [
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "count": 15,
+            "predicted": 0.17557594395742304,
+            "observed": 0.26666666666666666
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "count": 97,
+            "predicted": 0.25772199198178425,
+            "observed": 0.25773195876288657
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "count": 165,
+            "predicted": 0.3568095503519422,
+            "observed": 0.3212121212121212
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "count": 192,
+            "predicted": 0.4526308354029977,
+            "observed": 0.4114583333333333
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "count": 190,
+            "predicted": 0.5471390970674095,
+            "observed": 0.4631578947368421
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "count": 154,
+            "predicted": 0.6523094380473972,
+            "observed": 0.6103896103896104
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "count": 123,
+            "predicted": 0.7427297473881918,
+            "observed": 0.7804878048780488
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "count": 21,
+            "predicted": 0.8293489408563346,
+            "observed": 0.8571428571428571
+          }
+        ]
+      },
+      "selection": {
+        "count": 392,
+        "logLoss": 0.636180741104704,
+        "brierScore": 0.22299764539801434,
+        "accuracy": 0.6224489795918368,
+        "calibration": [
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "count": 6,
+            "predicted": 0.1775895071318073,
+            "observed": 0.16666666666666666
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "count": 40,
+            "predicted": 0.2533935566958206,
+            "observed": 0.2
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "count": 66,
+            "predicted": 0.3492395740680963,
+            "observed": 0.4090909090909091
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "count": 84,
+            "predicted": 0.44954572419844074,
+            "observed": 0.4166666666666667
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "count": 78,
+            "predicted": 0.5565844833059445,
+            "observed": 0.46153846153846156
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "count": 67,
+            "predicted": 0.6460068729544063,
+            "observed": 0.6417910447761194
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "count": 44,
+            "predicted": 0.7426018916015188,
+            "observed": 0.7727272727272727
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "count": 7,
+            "predicted": 0.8267826525557836,
+            "observed": 0.8571428571428571
+          }
+        ]
+      }
+    }
+  ],
+  "status": "Blocked by the October 13 gameplay announcement and roster change; final test unopened, candidate preserved, not deployed.",
+  "limitations": "Previously used development partitions are exploratory, not an independent performance test. No spent final test or reliability label was used for fitting. The base is trained on historical training only, distinct from the newer incumbent. Fresh 24-hour comparison is required; gains are not established.",
+  "boundary": "2026-10-13T20:59:55.000Z"
+}

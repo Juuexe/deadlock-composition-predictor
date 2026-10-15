@@ -7,6 +7,19 @@
     "node": ">=24.12.0 <25"
   },
   "scripts": {
+    "import:data": "node src/import-data.ts",
+    "train": "node src/train.ts",
+    "evaluate:later": "node src/evaluate-later.ts",
+    "reliability:check": "node src/check-reliability.ts",
+    "calibration:prepare": "node src/prepare-calibration.ts",
+    "calibration:test": "node src/test-calibration.ts",
+    "research:prepare": "node src/prepare-research.ts",
+    "research:train": "node src/train-research.ts",
+    "research:test": "node src/test-research.ts",
+    "research:nonlinear": "node src/train-nonlinear.ts",
+    "predict": "node src/predict.ts",
+    "dev": "node src/serve.ts",
+    "model:archive": "node src/release-model.ts",
     "test": "node --test tests/*.test.ts",
     "typecheck": "tsc --noEmit",
     "check": "npm run typecheck && npm test"

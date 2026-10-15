@@ -1,0 +1,1323 @@
+{
+  "generatedAt": "2026-10-13T23:04:08.069Z",
+  "frozenAt": "2026-10-10T04:37:11.067Z",
+  "codeSha256": "80f676d637f0241896413f4a2286d7da7457fe4ec424b5628a5bc1e694da64bd",
+  "modelSha256": "3debc4970fe52abf0546104f48110244623eb45d04846fcb04c6c7a4b3193325",
+  "modelKind": "hero-logistic-v1",
+  "timeZone": "America/Chicago",
+  "nextAnnouncement": {
+    "at": "2026-10-13T20:59:55.000Z",
+    "title": "Fairfax Industries Employee Spotlight",
+    "link": "https://store.steampowered.com/news/app/1422450/view/703281660030880788"
+  },
+  "windows": [
+    {
+      "minimum": 1791607032,
+      "maximum": 1791610631,
+      "received": 1884,
+      "accepted": 1884,
+      "capped": false
+    },
+    {
+      "minimum": 1791610632,
+      "maximum": 1791614231,
+      "received": 1590,
+      "accepted": 1590,
+      "capped": false
+    },
+    {
+      "minimum": 1791614232,
+      "maximum": 1791617831,
+      "received": 1294,
+      "accepted": 1294,
+      "capped": false
+    },
+    {
+      "minimum": 1791617832,
+      "maximum": 1791621431,
+      "received": 1268,
+      "accepted": 1268,
+      "capped": false
+    },
+    {
+      "minimum": 1791621432,
+      "maximum": 1791625031,
+      "received": 1200,
+      "accepted": 1200,
+      "capped": false
+    },
+    {
+      "minimum": 1791625032,
+      "maximum": 1791628631,
+      "received": 1189,
+      "accepted": 1189,
+      "capped": false
+    },
+    {
+      "minimum": 1791628632,
+      "maximum": 1791632231,
+      "received": 1276,
+      "accepted": 1275,
+      "capped": false
+    },
+    {
+      "minimum": 1791632232,
+      "maximum": 1791635831,
+      "received": 1358,
+      "accepted": 1358,
+      "capped": false
+    },
+    {
+      "minimum": 1791635832,
+      "maximum": 1791639431,
+      "received": 1809,
+      "accepted": 1809,
+      "capped": false
+    },
+    {
+      "minimum": 1791639432,
+      "maximum": 1791643031,
+      "received": 1927,
+      "accepted": 1927,
+      "capped": false
+    },
+    {
+      "minimum": 1791643032,
+      "maximum": 1791646631,
+      "received": 2030,
+      "accepted": 2030,
+      "capped": false
+    },
+    {
+      "minimum": 1791646632,
+      "maximum": 1791650231,
+      "received": 2011,
+      "accepted": 2010,
+      "capped": false
+    },
+    {
+      "minimum": 1791650232,
+      "maximum": 1791653831,
+      "received": 2056,
+      "accepted": 2055,
+      "capped": false
+    },
+    {
+      "minimum": 1791653832,
+      "maximum": 1791657431,
+      "received": 2500,
+      "accepted": 2499,
+      "capped": true
+    },
+    {
+      "minimum": 1791657432,
+      "maximum": 1791661031,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "minimum": 1791661032,
+      "maximum": 1791664631,
+      "received": 2500,
+      "accepted": 2499,
+      "capped": true
+    },
+    {
+      "minimum": 1791664632,
+      "maximum": 1791668231,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "minimum": 1791668232,
+      "maximum": 1791671831,
+      "received": 2445,
+      "accepted": 2444,
+      "capped": false
+    },
+    {
+      "minimum": 1791671832,
+      "maximum": 1791675431,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "minimum": 1791675432,
+      "maximum": 1791679031,
+      "received": 2260,
+      "accepted": 2260,
+      "capped": false
+    },
+    {
+      "minimum": 1791679032,
+      "maximum": 1791682631,
+      "received": 2147,
+      "accepted": 2147,
+      "capped": false
+    },
+    {
+      "minimum": 1791682632,
+      "maximum": 1791686231,
+      "received": 2209,
+      "accepted": 2209,
+      "capped": false
+    },
+    {
+      "minimum": 1791686232,
+      "maximum": 1791689831,
+      "received": 2066,
+      "accepted": 2066,
+      "capped": false
+    },
+    {
+      "minimum": 1791689832,
+      "maximum": 1791693431,
+      "received": 2136,
+      "accepted": 2136,
+      "capped": false
+    },
+    {
+      "minimum": 1791693432,
+      "maximum": 1791697031,
+      "received": 1986,
+      "accepted": 1986,
+      "capped": false
+    },
+    {
+      "minimum": 1791697032,
+      "maximum": 1791700631,
+      "received": 1643,
+      "accepted": 1643,
+      "capped": false
+    },
+    {
+      "minimum": 1791700632,
+      "maximum": 1791704231,
+      "received": 1421,
+      "accepted": 1421,
+      "capped": false
+    },
+    {
+      "minimum": 1791704232,
+      "maximum": 1791707831,
+      "received": 1198,
+      "accepted": 1198,
+      "capped": false
+    },
+    {
+      "minimum": 1791707832,
+      "maximum": 1791711431,
+      "received": 1317,
+      "accepted": 1317,
+      "capped": false
+    },
+    {
+      "minimum": 1791711432,
+      "maximum": 1791715031,
+      "received": 1318,
+      "accepted": 1317,
+      "capped": false
+    },
+    {
+      "minimum": 1791715032,
+      "maximum": 1791718631,
+      "received": 1430,
+      "accepted": 1430,
+      "capped": false
+    },
+    {
+      "minimum": 1791718632,
+      "maximum": 1791722231,
+      "received": 1492,
+      "accepted": 1492,
+      "capped": false
+    },
+    {
+      "minimum": 1791722232,
+      "maximum": 1791725831,
+      "received": 1560,
+      "accepted": 1560,
+      "capped": false
+    },
+    {
+      "minimum": 1791725832,
+      "maximum": 1791729431,
+      "received": 2165,
+      "accepted": 2165,
+      "capped": false
+    },
+    {
+      "minimum": 1791729432,
+      "maximum": 1791733031,
+      "received": 2256,
+      "accepted": 2254,
+      "capped": false
+    },
+    {
+      "minimum": 1791733032,
+      "maximum": 1791736631,
+      "received": 2252,
+      "accepted": 2252,
+      "capped": false
+    },
+    {
+      "minimum": 1791736632,
+      "maximum": 1791740231,
+      "received": 2359,
+      "accepted": 2358,
+      "capped": false
+    },
+    {
+      "minimum": 1791740232,
+      "maximum": 1791743831,
+      "received": 2441,
+      "accepted": 2440,
+      "capped": false
+    },
+    {
+      "minimum": 1791743832,
+      "maximum": 1791747431,
+      "received": 2500,
+      "accepted": 2499,
+      "capped": true
+    },
+    {
+      "minimum": 1791747432,
+      "maximum": 1791751031,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "minimum": 1791751032,
+      "maximum": 1791754631,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "minimum": 1791754632,
+      "maximum": 1791758231,
+      "received": 2394,
+      "accepted": 2394,
+      "capped": false
+    },
+    {
+      "minimum": 1791758232,
+      "maximum": 1791761831,
+      "received": 2091,
+      "accepted": 2091,
+      "capped": false
+    },
+    {
+      "minimum": 1791761832,
+      "maximum": 1791765431,
+      "received": 2346,
+      "accepted": 2346,
+      "capped": false
+    },
+    {
+      "minimum": 1791765432,
+      "maximum": 1791769031,
+      "received": 2384,
+      "accepted": 2382,
+      "capped": false
+    },
+    {
+      "minimum": 1791769032,
+      "maximum": 1791772631,
+      "received": 2308,
+      "accepted": 2308,
+      "capped": false
+    },
+    {
+      "minimum": 1791772632,
+      "maximum": 1791776231,
+      "received": 2132,
+      "accepted": 2132,
+      "capped": false
+    },
+    {
+      "minimum": 1791776232,
+      "maximum": 1791779831,
+      "received": 1914,
+      "accepted": 1914,
+      "capped": false
+    },
+    {
+      "minimum": 1791779832,
+      "maximum": 1791783431,
+      "received": 1768,
+      "accepted": 1767,
+      "capped": false
+    },
+    {
+      "minimum": 1791783432,
+      "maximum": 1791787031,
+      "received": 1434,
+      "accepted": 1434,
+      "capped": false
+    },
+    {
+      "minimum": 1791787032,
+      "maximum": 1791790631,
+      "received": 1216,
+      "accepted": 1216,
+      "capped": false
+    },
+    {
+      "minimum": 1791790632,
+      "maximum": 1791794231,
+      "received": 1030,
+      "accepted": 1030,
+      "capped": false
+    },
+    {
+      "minimum": 1791794232,
+      "maximum": 1791797831,
+      "received": 1005,
+      "accepted": 1005,
+      "capped": false
+    },
+    {
+      "minimum": 1791797832,
+      "maximum": 1791801431,
+      "received": 1145,
+      "accepted": 1145,
+      "capped": false
+    },
+    {
+      "minimum": 1791801432,
+      "maximum": 1791805031,
+      "received": 1234,
+      "accepted": 1234,
+      "capped": false
+    },
+    {
+      "minimum": 1791805032,
+      "maximum": 1791808631,
+      "received": 1326,
+      "accepted": 1325,
+      "capped": false
+    },
+    {
+      "minimum": 1791808632,
+      "maximum": 1791812231,
+      "received": 1386,
+      "accepted": 1386,
+      "capped": false
+    },
+    {
+      "minimum": 1791812232,
+      "maximum": 1791815831,
+      "received": 1547,
+      "accepted": 1546,
+      "capped": false
+    },
+    {
+      "minimum": 1791815832,
+      "maximum": 1791819431,
+      "received": 1893,
+      "accepted": 1892,
+      "capped": false
+    },
+    {
+      "minimum": 1791819432,
+      "maximum": 1791823031,
+      "received": 2158,
+      "accepted": 2157,
+      "capped": false
+    },
+    {
+      "minimum": 1791823032,
+      "maximum": 1791826631,
+      "received": 2288,
+      "accepted": 2288,
+      "capped": false
+    },
+    {
+      "minimum": 1791826632,
+      "maximum": 1791830231,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "minimum": 1791830232,
+      "maximum": 1791833831,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "minimum": 1791833832,
+      "maximum": 1791837431,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "minimum": 1791837432,
+      "maximum": 1791841031,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "minimum": 1791841032,
+      "maximum": 1791844631,
+      "received": 2350,
+      "accepted": 2350,
+      "capped": false
+    },
+    {
+      "minimum": 1791844632,
+      "maximum": 1791848231,
+      "received": 2226,
+      "accepted": 2225,
+      "capped": false
+    },
+    {
+      "minimum": 1791848232,
+      "maximum": 1791851831,
+      "received": 2059,
+      "accepted": 2059,
+      "capped": false
+    },
+    {
+      "minimum": 1791851832,
+      "maximum": 1791855431,
+      "received": 2389,
+      "accepted": 2388,
+      "capped": false
+    },
+    {
+      "minimum": 1791855432,
+      "maximum": 1791859031,
+      "received": 2372,
+      "accepted": 2372,
+      "capped": false
+    },
+    {
+      "minimum": 1791859032,
+      "maximum": 1791862631,
+      "received": 2195,
+      "accepted": 2195,
+      "capped": false
+    },
+    {
+      "minimum": 1791862632,
+      "maximum": 1791866231,
+      "received": 1829,
+      "accepted": 1829,
+      "capped": false
+    },
+    {
+      "minimum": 1791866232,
+      "maximum": 1791869831,
+      "received": 1499,
+      "accepted": 1499,
+      "capped": false
+    },
+    {
+      "minimum": 1791869832,
+      "maximum": 1791873431,
+      "received": 1451,
+      "accepted": 1451,
+      "capped": false
+    },
+    {
+      "minimum": 1791873432,
+      "maximum": 1791877031,
+      "received": 1210,
+      "accepted": 1210,
+      "capped": false
+    },
+    {
+      "minimum": 1791877032,
+      "maximum": 1791880631,
+      "received": 1047,
+      "accepted": 1047,
+      "capped": false
+    },
+    {
+      "minimum": 1791880632,
+      "maximum": 1791884231,
+      "received": 1059,
+      "accepted": 1058,
+      "capped": false
+    },
+    {
+      "minimum": 1791884232,
+      "maximum": 1791887831,
+      "received": 977,
+      "accepted": 977,
+      "capped": false
+    },
+    {
+      "minimum": 1791887832,
+      "maximum": 1791891431,
+      "received": 1304,
+      "accepted": 1303,
+      "capped": false
+    },
+    {
+      "minimum": 1791891432,
+      "maximum": 1791895031,
+      "received": 1418,
+      "accepted": 1418,
+      "capped": false
+    },
+    {
+      "minimum": 1791895032,
+      "maximum": 1791898631,
+      "received": 1510,
+      "accepted": 1510,
+      "capped": false
+    },
+    {
+      "minimum": 1791898632,
+      "maximum": 1791902231,
+      "received": 1635,
+      "accepted": 1633,
+      "capped": false
+    },
+    {
+      "minimum": 1791902232,
+      "maximum": 1791905831,
+      "received": 1638,
+      "accepted": 1638,
+      "capped": false
+    },
+    {
+      "minimum": 1791905832,
+      "maximum": 1791909431,
+      "received": 2161,
+      "accepted": 2161,
+      "capped": false
+    },
+    {
+      "minimum": 1791909432,
+      "maximum": 1791913031,
+      "received": 2327,
+      "accepted": 2327,
+      "capped": false
+    },
+    {
+      "minimum": 1791913032,
+      "maximum": 1791916631,
+      "received": 2453,
+      "accepted": 2452,
+      "capped": false
+    },
+    {
+      "minimum": 1791916632,
+      "maximum": 1791920231,
+      "received": 2001,
+      "accepted": 2001,
+      "capped": false
+    },
+    {
+      "minimum": 1791920232,
+      "maximum": 1791923831,
+      "received": 2301,
+      "accepted": 2301,
+      "capped": false
+    }
+  ],
+  "total": 159562,
+  "coverage": 1,
+  "overall": {
+    "count": 159562,
+    "logLoss": 0.6605552151210143,
+    "brierScore": 0.234178747465357,
+    "accuracy": 0.6036148957771901,
+    "calibration": [
+      {
+        "lower": 0,
+        "upper": 0.1,
+        "count": 2,
+        "predicted": 0.0909421278165,
+        "observed": 0,
+        "observedInterval95": {
+          "lower": 0,
+          "upper": 0.6576280471103807
+        }
+      },
+      {
+        "lower": 0.1,
+        "upper": 0.2,
+        "count": 878,
+        "predicted": 0.17884812463541158,
+        "observed": 0.1867881548974943,
+        "observedInterval95": {
+          "lower": 0.16239252146189814,
+          "upper": 0.21391270160764186
+        }
+      },
+      {
+        "lower": 0.2,
+        "upper": 0.3,
+        "count": 9806,
+        "predicted": 0.2623799749340489,
+        "observed": 0.2815623087905364,
+        "observedInterval95": {
+          "lower": 0.27274709346041603,
+          "upper": 0.2905486074609933
+        }
+      },
+      {
+        "lower": 0.3,
+        "upper": 0.4,
+        "count": 26587,
+        "predicted": 0.35542383849555864,
+        "observed": 0.3652913077819987,
+        "observedInterval95": {
+          "lower": 0.35952315766928206,
+          "upper": 0.37109838083817165
+        }
+      },
+      {
+        "lower": 0.4,
+        "upper": 0.5,
+        "count": 39883,
+        "predicted": 0.4515922884959692,
+        "observed": 0.4491638041270717,
+        "observedInterval95": {
+          "lower": 0.44428718024781066,
+          "upper": 0.4540502203249135
+        }
+      },
+      {
+        "lower": 0.5,
+        "upper": 0.6,
+        "count": 40842,
+        "predicted": 0.5486137933905652,
+        "observed": 0.5431418637676901,
+        "observedInterval95": {
+          "lower": 0.5383068887217307,
+          "upper": 0.5479687237264163
+        }
+      },
+      {
+        "lower": 0.6,
+        "upper": 0.7,
+        "count": 29039,
+        "predicted": 0.6451377633197022,
+        "observed": 0.6296704431970798,
+        "observedInterval95": {
+          "lower": 0.624099501521775,
+          "upper": 0.6352070809305426
+        }
+      },
+      {
+        "lower": 0.7,
+        "upper": 0.8,
+        "count": 11431,
+        "predicted": 0.7381849884759053,
+        "observed": 0.7284577027381681,
+        "observedInterval95": {
+          "lower": 0.7202286322338176,
+          "upper": 0.7365332699161868
+        }
+      },
+      {
+        "lower": 0.8,
+        "upper": 0.9,
+        "count": 1092,
+        "predicted": 0.8209926199774362,
+        "observed": 0.8351648351648352,
+        "observedInterval95": {
+          "lower": 0.8119903409365902,
+          "upper": 0.8559894108815559
+        }
+      },
+      {
+        "lower": 0.9,
+        "upper": 1,
+        "count": 2,
+        "predicted": 0.9040870702565589,
+        "observed": 1,
+        "observedInterval95": {
+          "lower": 0.34237195288961925,
+          "upper": 1
+        }
+      }
+    ],
+    "accuracyInterval95": {
+      "lower": 0.6012123252954207,
+      "upper": 0.6060124771337227
+    }
+  },
+  "coinFlip": {
+    "count": 159562,
+    "logLoss": 0.6931471805585643,
+    "brierScore": 0.25,
+    "accuracy": 0.5,
+    "calibration": [
+      {
+        "lower": 0.5,
+        "upper": 0.6,
+        "count": 159562,
+        "predicted": 0.5,
+        "observed": 0.503001967887091
+      }
+    ]
+  },
+  "days": [
+    {
+      "day": "2026-10-09",
+      "total": 761,
+      "coverage": 1,
+      "score": {
+        "count": 761,
+        "logLoss": 0.6392237003933863,
+        "brierScore": 0.22427085507801744,
+        "accuracy": 0.6294349540078844,
+        "calibration": [
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "count": 4,
+            "predicted": 0.17005434761508775,
+            "observed": 0,
+            "observedInterval95": {
+              "lower": 0,
+              "upper": 0.48990002040399916
+            }
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "count": 41,
+            "predicted": 0.26011885079330627,
+            "observed": 0.1951219512195122,
+            "observedInterval95": {
+              "lower": 0.10234315749205929,
+              "upper": 0.34013882352556724
+            }
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "count": 122,
+            "predicted": 0.35589517168100976,
+            "observed": 0.3114754098360656,
+            "observedInterval95": {
+              "lower": 0.23611364268808394,
+              "upper": 0.3983474576157902
+            }
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "count": 183,
+            "predicted": 0.45465832432625386,
+            "observed": 0.5136612021857924,
+            "observedInterval95": {
+              "lower": 0.44171146415789586,
+              "upper": 0.5850491715891755
+            }
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "count": 181,
+            "predicted": 0.5463980537494287,
+            "observed": 0.6132596685082873,
+            "observedInterval95": {
+              "lower": 0.5406580714688007,
+              "upper": 0.6811534687905347
+            }
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "count": 165,
+            "predicted": 0.6466110239611472,
+            "observed": 0.6545454545454545,
+            "observedInterval95": {
+              "lower": 0.5792161492824026,
+              "upper": 0.7228421112410703
+            }
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "count": 61,
+            "predicted": 0.7370077256044556,
+            "observed": 0.7540983606557377,
+            "observedInterval95": {
+              "lower": 0.6331533709421812,
+              "upper": 0.8449347700043716
+            }
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "count": 4,
+            "predicted": 0.8153180150863358,
+            "observed": 1,
+            "observedInterval95": {
+              "lower": 0.5100999795960008,
+              "upper": 1
+            }
+          }
+        ],
+        "accuracyInterval95": {
+          "lower": 0.5945509420572147,
+          "upper": 0.6630187298853157
+        }
+      }
+    },
+    {
+      "day": "2026-10-10",
+      "total": 46696,
+      "coverage": 1,
+      "score": {
+        "count": 46696,
+        "logLoss": 0.6559975793059414,
+        "brierScore": 0.23206198303151973,
+        "accuracy": 0.6098166866541032,
+        "calibration": [
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "count": 297,
+            "predicted": 0.17829986720508711,
+            "observed": 0.15151515151515152,
+            "observedInterval95": {
+              "lower": 0.11520450150494432,
+              "upper": 0.1967257634584118
+            }
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "count": 2976,
+            "predicted": 0.2612188862609606,
+            "observed": 0.27856182795698925,
+            "observedInterval95": {
+              "lower": 0.2627487041355048,
+              "upper": 0.29494590620888395
+            }
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "count": 7647,
+            "predicted": 0.3549630182813418,
+            "observed": 0.3644566496665359,
+            "observedInterval95": {
+              "lower": 0.35374006821688175,
+              "upper": 0.3753093477323387
+            }
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "count": 11301,
+            "predicted": 0.45135601504287903,
+            "observed": 0.45172993540394657,
+            "observedInterval95": {
+              "lower": 0.4425722858518052,
+              "upper": 0.46092039112652594
+            }
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "count": 11910,
+            "predicted": 0.5485375168144979,
+            "observed": 0.5497900923593618,
+            "observedInterval95": {
+              "lower": 0.5408402249738744,
+              "upper": 0.5587078502666087
+            }
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "count": 8586,
+            "predicted": 0.6455795005967196,
+            "observed": 0.6367342184952248,
+            "observedInterval95": {
+              "lower": 0.6265020901434065,
+              "upper": 0.6468440446677407
+            }
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "count": 3644,
+            "predicted": 0.7383372928878872,
+            "observed": 0.7453347969264544,
+            "observedInterval95": {
+              "lower": 0.7309357250134277,
+              "upper": 0.7592171368871549
+            }
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "count": 335,
+            "predicted": 0.8219572745544814,
+            "observed": 0.8656716417910447,
+            "observedInterval95": {
+              "lower": 0.8249806183457788,
+              "upper": 0.8980710966738645
+            }
+          }
+        ],
+        "accuracyInterval95": {
+          "lower": 0.6053834680464332,
+          "upper": 0.6142318378864247
+        }
+      }
+    },
+    {
+      "day": "2026-10-11",
+      "total": 47795,
+      "coverage": 1,
+      "score": {
+        "count": 47795,
+        "logLoss": 0.6604544097638885,
+        "brierScore": 0.23408931085970397,
+        "accuracy": 0.6039125431530494,
+        "calibration": [
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "count": 252,
+            "predicted": 0.17980509109850354,
+            "observed": 0.2222222222222222,
+            "observedInterval95": {
+              "lower": 0.17527886561492428,
+              "upper": 0.27750754597724836
+            }
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "count": 2916,
+            "predicted": 0.2625708833890161,
+            "observed": 0.2880658436213992,
+            "observedInterval95": {
+              "lower": 0.27191592277788623,
+              "upper": 0.3047734428370157
+            }
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "count": 7898,
+            "predicted": 0.35561837771263005,
+            "observed": 0.36325652063813624,
+            "observedInterval95": {
+              "lower": 0.352718519795798,
+              "upper": 0.3739274813085523
+            }
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "count": 12103,
+            "predicted": 0.4519186307389363,
+            "observed": 0.4489795918367347,
+            "observedInterval95": {
+              "lower": 0.4401356833757759,
+              "upper": 0.45785587868447264
+            }
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "count": 12145,
+            "predicted": 0.5487422571394975,
+            "observed": 0.5436805269658296,
+            "observedInterval95": {
+              "lower": 0.5348095329778142,
+              "upper": 0.5525238964085728
+            }
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "count": 8753,
+            "predicted": 0.645113811803011,
+            "observed": 0.6322403747286645,
+            "observedInterval95": {
+              "lower": 0.6220825647057526,
+              "upper": 0.6422821578444418
+            }
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "count": 3377,
+            "predicted": 0.7385936447440076,
+            "observed": 0.7305300562629553,
+            "observedInterval95": {
+              "lower": 0.7153097315171691,
+              "upper": 0.7452264852638831
+            }
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "count": 349,
+            "predicted": 0.8213002951658422,
+            "observed": 0.8252148997134671,
+            "observedInterval95": {
+              "lower": 0.7818882366314991,
+              "upper": 0.8614599400007347
+            }
+          },
+          {
+            "lower": 0.9,
+            "upper": 1,
+            "count": 2,
+            "predicted": 0.9040870702565589,
+            "observed": 1,
+            "observedInterval95": {
+              "lower": 0.34237195288961925,
+              "upper": 1
+            }
+          }
+        ],
+        "accuracyInterval95": {
+          "lower": 0.5995195839778628,
+          "upper": 0.6082887993951768
+        }
+      }
+    },
+    {
+      "day": "2026-10-12",
+      "total": 44759,
+      "coverage": 1,
+      "score": {
+        "count": 44759,
+        "logLoss": 0.6631180650659514,
+        "brierScore": 0.23540821896292008,
+        "accuracy": 0.5989856788578833,
+        "calibration": [
+          {
+            "lower": 0,
+            "upper": 0.1,
+            "count": 2,
+            "predicted": 0.0909421278165,
+            "observed": 0,
+            "observedInterval95": {
+              "lower": 0,
+              "upper": 0.6576280471103807
+            }
+          },
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "count": 238,
+            "predicted": 0.17850625060770067,
+            "observed": 0.19747899159663865,
+            "observedInterval95": {
+              "lower": 0.15188081315501184,
+              "upper": 0.2526881278377701
+            }
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "count": 2671,
+            "predicted": 0.2630210924812619,
+            "observed": 0.2822912766754025,
+            "observedInterval95": {
+              "lower": 0.26554301449412926,
+              "upper": 0.2996648841717208
+            }
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "count": 7630,
+            "predicted": 0.355682621823382,
+            "observed": 0.3673656618610747,
+            "observedInterval95": {
+              "lower": 0.3566176093496115,
+              "upper": 0.3782472062892146
+            }
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "count": 11338,
+            "predicted": 0.45162034228941084,
+            "observed": 0.4470806138648792,
+            "observedInterval95": {
+              "lower": 0.4379481621384884,
+              "upper": 0.4562489142869134
+            }
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "count": 11507,
+            "predicted": 0.5486016634269978,
+            "observed": 0.5339358651255758,
+            "observedInterval95": {
+              "lower": 0.5248113529811301,
+              "upper": 0.5430377259254896
+            }
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "count": 7977,
+            "predicted": 0.645090160751371,
+            "observed": 0.6241694872759183,
+            "observedInterval95": {
+              "lower": 0.6134833247722467,
+              "upper": 0.6347361111328589
+            }
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "count": 3095,
+            "predicted": 0.7375419801541965,
+            "observed": 0.7211631663974152,
+            "observedInterval95": {
+              "lower": 0.7050978452589328,
+              "upper": 0.7366801404244915
+            }
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "count": 301,
+            "predicted": 0.8208270663657395,
+            "observed": 0.8272425249169435,
+            "observedInterval95": {
+              "lower": 0.7804808386702174,
+              "upper": 0.8657564202865654
+            }
+          }
+        ],
+        "accuracyInterval95": {
+          "lower": 0.5944368668706377,
+          "upper": 0.6035175007091007
+        }
+      }
+    },
+    {
+      "day": "2026-10-13",
+      "total": 19551,
+      "coverage": 1,
+      "score": {
+        "count": 19551,
+        "logLoss": 0.6666502504688657,
+        "brierScore": 0.23702407741865034,
+        "accuracy": 0.597667638483965,
+        "calibration": [
+          {
+            "lower": 0.1,
+            "upper": 0.2,
+            "count": 87,
+            "predicted": 0.17928741239154397,
+            "observed": 0.1839080459770115,
+            "observedInterval95": {
+              "lower": 0.1164936795956926,
+              "upper": 0.2780568347061251
+            }
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.3,
+            "count": 1202,
+            "predicted": 0.2634440281433661,
+            "observed": 0.27454242928452577,
+            "observedInterval95": {
+              "lower": 0.2500608351599587,
+              "upper": 0.3004605600216307
+            }
+          },
+          {
+            "lower": 0.3,
+            "upper": 0.4,
+            "count": 3290,
+            "predicted": 0.3554102828729952,
+            "observed": 0.36930091185410335,
+            "observedInterval95": {
+              "lower": 0.35297078910466245,
+              "upper": 0.38593590270468264
+            }
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.5,
+            "count": 4958,
+            "predicted": 0.4511568806016296,
+            "observed": 0.4461476401774909,
+            "observedInterval95": {
+              "lower": 0.43235771890152774,
+              "upper": 0.46002094953480444
+            }
+          },
+          {
+            "lower": 0.5,
+            "upper": 0.6,
+            "count": 5099,
+            "predicted": 0.5485920028739966,
+            "observed": 0.5446165914885271,
+            "observedInterval95": {
+              "lower": 0.5309187658720749,
+              "upper": 0.5582472392024311
+            }
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.7,
+            "count": 3558,
+            "predicted": 0.6441691093137747,
+            "observed": 0.6174817313097246,
+            "observedInterval95": {
+              "lower": 0.6013936361064248,
+              "upper": 0.633316408270619
+            }
+          },
+          {
+            "lower": 0.7,
+            "upper": 0.8,
+            "count": 1254,
+            "predicted": 0.7382861800996919,
+            "observed": 0.6905901116427432,
+            "observedInterval95": {
+              "lower": 0.66445554511234,
+              "upper": 0.7155605077833505
+            }
+          },
+          {
+            "lower": 0.8,
+            "upper": 0.9,
+            "count": 103,
+            "predicted": 0.8175168154397863,
+            "observed": 0.7864077669902912,
+            "observedInterval95": {
+              "lower": 0.6977157609952813,
+              "upper": 0.8545035992539101
+            }
+          }
+        ],
+        "accuracyInterval95": {
+          "lower": 0.5907753466183093,
+          "upper": 0.6045215562213434
+        }
+      }
+    }
+  ],
+  "retainedMatches": 165377,
+  "transitionExcluded": 5815,
+  "status": "Evaluation period ended at a gameplay announcement; frozen data retained.",
+  "limitations": "Fixed 2500-match hourly availability samples; capped windows and delayed API ingestion can bias results. Daily and calibration Wilson intervals are approximate and assume independent matches. Ten-percentage-point calibration bins do not establish exact 58% calibration. Stop one hour before the next identified official gameplay announcement; deployment boundaries and unannounced updates remain unverified. Repeated checks are descriptive, not significance tests. These matches are evaluation-only; never use them to train or tune this predictor."
+}

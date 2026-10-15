@@ -1,4 +1,6 @@
 node_modules/
+.venv/
+__pycache__/
 dist/
 coverage/
 .env
@@ -6,5 +8,9 @@ coverage/
 !.env.example
 data/
 models/
+work/
 *.pem
 *.log
+
+.vercel
+.env*
