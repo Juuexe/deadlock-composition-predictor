@@ -8,4 +8,4 @@ Cards lift and portraits enlarge on hover and keyboard focus; pressed controls s
 ## Responsive
 Two team panels on desktop, stacked on mobile; three hero columns per team, two columns below 370px. Evidence and methodology remain readable below the primary task.
 ## Tokens
-Background #171721; foreground #fff5da; secondary #c0bdce; primary #ffcf59; own-team #9de2c1; opposing-team #ffa28c. Team colors always accompany explicit text labels. Existing system fonts avoid runtime dependencies or changes to serving/security rules.
+Background #000000; foreground #fff5da; secondary #c0bdce; primary #ffcf59; own-team #9de2c1; opposing-team #ffa28c. Team colors always accompany explicit text labels. Existing system fonts avoid runtime dependencies or changes to serving/security rules.
