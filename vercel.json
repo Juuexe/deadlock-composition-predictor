@@ -1,7 +1,7 @@
 {
   "buildCommand": "npm run check",
   "outputDirectory": "public",
-  "functions": { "api/index.ts": { "includeFiles": "docs/reliability-evaluation.json", "maxDuration": 15 } },
+  "functions": { "api/index.ts": { "includeFiles": ["docs/reliability-evaluation.json", "docs/roster-release.json"], "maxDuration": 15 } },
   "rewrites": [{ "source": "/api/:path*", "destination": "/api/index?route=:path*" }],
   "headers": [{ "source": "/(.*)", "headers": [
     { "key": "X-Content-Type-Options", "value": "nosniff" },

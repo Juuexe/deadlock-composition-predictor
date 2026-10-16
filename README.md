@@ -38,7 +38,7 @@ Predictions use **hero composition only**. Player identities, skill, personal wi
 
 The deployed predictor currently uses learned hero-strength coefficients. Pair interactions, nonlinear models and extra calibration curves are research experiments, not active prediction features. Draft assistance is secondary and assumes uniformly sampled remaining picks; it is not a validated counter-pick strategy.
 
-Predictions remain experimental. Unsupported heroes are unavailable for selection, and the interface names catalog heroes missing from the model. The prior evaluation period ended at a gameplay announcement; it does not establish accuracy for the new roster. Exact probabilities and future-patch performance remain uncertain. Automatic match-start detection and live prediction are not implemented.
+Predictions remain experimental. Unsupported heroes are unavailable for selection, and the interface names catalog heroes missing from the model. The active 42-hero model includes Deadman Danny. It passed a single-use chronological roster holdout; the old model's closed reliability period is separate and is not evidence for this new version. Exact probabilities and future-patch performance remain uncertain. Automatic match-start detection and live prediction are not implemented.
 
 ## Math and logic
 
@@ -83,7 +83,7 @@ gradient_h = (1/N) * sum_i[(p_i-y_i) * x_ih] + lambda * w_h
 w_h <- w_h - learning_rate * gradient_h
 ```
 
-Cross-entropy penalizes confidently wrong predictions heavily. The penalty discourages large coefficients fitted to noise; lambda controls its strength. Coefficients start at zero. Hero-only training takes 300 full-batch updates with learning rate 0.5; the pair experiment takes 1,000 with rate 0.05. This is a fixed optimization budget, not a proof that the exact mathematical optimum was reached. The research workflow compares lambda values 0.001, 0.01 and 0.1 on validation data. The deployed baseline uses 0.01.
+Cross-entropy penalizes confidently wrong predictions heavily. The penalty discourages large coefficients fitted to noise; lambda controls its strength. Coefficients start at zero. Hero-only training takes 300 full-batch updates with learning rate 0.5; the pair experiment takes 1,000 with rate 0.05. This is a fixed optimization budget, not a proof that the exact mathematical optimum was reached. The research workflow compares lambda values 0.001, 0.01 and 0.1 on validation data. The deployed roster-update model uses 0.001.
 
 ### 3. Optional interactions and nonlinear research
 
@@ -148,7 +148,7 @@ Implementation: [src/reliability.ts](src/reliability.ts).
 
 The current research pipeline splits matches chronologically into 50% training, 20% validation, 15% calibration and 15% final test, with completion-time purging around cutoffs. Training learns coefficients; validation selects the model; calibration selects confidence scaling; the final test measures the frozen candidate once. An earlier baseline workflow used 70/15/15; it is distinct from this four-part protocol.
 
-Promotion requires at least 500 common supported test matches, at least 95% common coverage, and lower log loss and Brier score than both the frozen incumbent and 50/50. These are point-estimate gates, not statistical proof of improvement. A spent test cannot become another tuning set. Separately frozen prospective reliability matches are excluded from development. Announcement boundaries end a period rather than silently mixing new balance conditions into an old claim.
+Promotion requires at least 500 common supported test matches, at least 95% common coverage, and lower log loss and Brier score than both the frozen incumbent and 50/50. These are point-estimate gates, not statistical proof of improvement. A separately frozen [roster-expansion policy](docs/roster-protocol.md) handles added heroes: require 95% candidate coverage and at least 500 scored matches overall, on shared heroes, and for each new hero. Beat the incumbent and 50/50 on shared matches, and 50/50 overall and on each new-hero cohort, using both probability losses. The original same-roster gate is unchanged. A spent test cannot become another tuning set. Separately frozen prospective reliability matches are excluded from development. Announcement boundaries end a period rather than silently mixing new balance conditions into an old claim.
 
 ### 7. Draft recommendations reuse the predictor
 

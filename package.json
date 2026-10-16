@@ -22,7 +22,9 @@
     "model:archive": "node src/release-model.ts",
     "test": "node --test tests/*.test.ts",
     "typecheck": "tsc --noEmit",
-    "check": "npm run typecheck && npm test"
+    "check": "npm run typecheck && npm test",
+    "roster:freeze": "node src/test-roster.ts --freeze",
+    "roster:test": "node src/test-roster.ts"
   },
   "devDependencies": {
     "@types/node": "24.19.2",
