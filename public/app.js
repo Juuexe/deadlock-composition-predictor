@@ -167,10 +167,10 @@ async function loadEvidence() {
   try {
     const response = await fetch('/api/evidence', { signal: AbortSignal.timeout(15000) });
     if (!response.ok) throw new Error();
-    const evidence = await response.json(), report = evidence.reliability;
+    const evidence = await response.json(), report = evidence.reliability ?? evidence.holdout;
     target.textContent = report
-      ? `Model ${evidence.modelVersion} · ${report.count.toLocaleString()} later matches · ${(report.accuracy * 100).toFixed(1)}% winner accuracy · ${(report.coverage * 100).toFixed(0)}% coverage. Log loss ${report.logLoss.toFixed(4)}; Brier score ${report.brierScore.toFixed(4)}. Evaluation updated ${new Date(report.updatedAt).toLocaleString()}. ${report.nextAnnouncement ? 'A later gameplay announcement limits this evaluation period.' : 'Patch deployment boundaries remain unverified.'}`
-      : `Model ${evidence.modelVersion}. Matching prospective evidence is unavailable for this version.`;
+      ? `Model ${evidence.modelVersion} · ${report.count.toLocaleString()} ${evidence.reliability ? 'later' : 'held-out'} matches · ${(report.accuracy * 100).toFixed(1)}% winner accuracy · ${(report.coverage * 100).toFixed(0)}% coverage. Log loss ${report.logLoss.toFixed(4)}; Brier score ${report.brierScore.toFixed(4)}. Evaluation updated ${new Date(report.updatedAt).toLocaleString()}. ${evidence.reliability ? (report.nextAnnouncement ? 'A later gameplay announcement limits this evaluation period.' : 'Patch deployment boundaries remain unverified.') : 'Chronological holdout; future-day reliability remains unverified.'}`
+      : `Model ${evidence.modelVersion}. Matching evaluation evidence is unavailable for this version.`;
     if (evidence.unsupportedHeroes?.length) target.textContent += ` Current catalog heroes not supported by this model: ${evidence.unsupportedHeroes.join(', ')}. These heroes cannot be selected; roster coverage needs re-evaluation.`;
   } catch { target.textContent = 'Model evidence is currently unavailable. Predictions remain experimental.'; }
 }

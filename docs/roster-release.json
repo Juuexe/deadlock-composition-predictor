@@ -1,0 +1,96 @@
+{
+  "modelSha256": "5c094e85ad12721e5e61bf64c3c5b054d8dbdf75591e23ffbc1555b33cf5b679",
+  "modelVersion": "5c094e85ad12",
+  "generatedAt": "2026-10-16T04:17:59.924Z",
+  "frozenAt": "2026-10-16T04:17:36.772Z",
+  "announcementPeriod": "2026-10-15T03:11:58.000Z",
+  "coverage": 1,
+  "overall": {
+    "count": 6720,
+    "logLoss": 0.656237700133132,
+    "brierScore": 0.23221860062609911,
+    "accuracy": 0.6095238095238096,
+    "calibration": [
+      {
+        "lower": 0.1,
+        "upper": 0.2,
+        "count": 45,
+        "predicted": 0.17555536183582546,
+        "observed": 0.06666666666666667
+      },
+      {
+        "lower": 0.2,
+        "upper": 0.3,
+        "count": 399,
+        "predicted": 0.2622699866334288,
+        "observed": 0.2832080200501253
+      },
+      {
+        "lower": 0.3,
+        "upper": 0.4,
+        "count": 1160,
+        "predicted": 0.3557494422628578,
+        "observed": 0.36724137931034484
+      },
+      {
+        "lower": 0.4,
+        "upper": 0.5,
+        "count": 1700,
+        "predicted": 0.4515050403012156,
+        "observed": 0.45529411764705885
+      },
+      {
+        "lower": 0.5,
+        "upper": 0.6,
+        "count": 1815,
+        "predicted": 0.5480004764901231,
+        "observed": 0.5553719008264463
+      },
+      {
+        "lower": 0.6,
+        "upper": 0.7,
+        "count": 1134,
+        "predicted": 0.6439889811299593,
+        "observed": 0.6569664902998237
+      },
+      {
+        "lower": 0.7,
+        "upper": 0.8,
+        "count": 431,
+        "predicted": 0.7385791437250929,
+        "observed": 0.7494199535962877
+      },
+      {
+        "lower": 0.8,
+        "upper": 0.9,
+        "count": 36,
+        "predicted": 0.8284693087869126,
+        "observed": 0.8888888888888888
+      }
+    ]
+  },
+  "accuracyInterval95": {
+    "lower": 0.5977999547170442,
+    "upper": 0.6211225136528234
+  },
+  "testRange": {
+    "path": "data/research/26a286e9-655e-4da9-b5b5-129d9652b9cf/test.json",
+    "count": 6720,
+    "sha256": "5cd0f1b67f69d72a7ddfa656c7837b9a85c79b699d4a8937fd587e1d62378dcc",
+    "first": "2026-10-16T00:13:30.000Z",
+    "last": "2026-10-16T03:44:40.000Z"
+  },
+  "newHeroes": [
+    {
+      "heroId": 78,
+      "name": "Deadman Danny",
+      "trainingMatches": 17980,
+      "count": 5677,
+      "accuracy": 0.6149374669719923,
+      "logLoss": 0.6540962584711115,
+      "brierScore": 0.23120158207970945
+    }
+  ],
+  "protocol": "roster-expansion-v1",
+  "limitations": "Single-use chronological holdout; point-estimate gates, API-capped availability sampling and announcement-time proxies. No future-day reliability certification. New-hero comparison is against 50/50 because the incumbent abstains. Test labels are spent; no tuning or repeated selection."
+}
