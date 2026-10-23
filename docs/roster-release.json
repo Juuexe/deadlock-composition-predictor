@@ -1,94 +1,157 @@
 {
-  "modelSha256": "5c094e85ad12721e5e61bf64c3c5b054d8dbdf75591e23ffbc1555b33cf5b679",
-  "modelVersion": "5c094e85ad12",
-  "generatedAt": "2026-10-16T04:17:59.924Z",
-  "frozenAt": "2026-10-16T04:17:36.772Z",
-  "announcementPeriod": "2026-10-15T03:11:58.000Z",
+  "modelSha256": "8b35c11d0619129e864609c78e0121b3e88370c204501756e3daac27c2847b8f",
+  "modelVersion": "8b35c11d0619",
+  "generatedAt": "2026-10-23T05:53:34.222Z",
+  "frozenAt": "2026-10-23T05:53:23.574Z",
+  "announcementPeriod": "2026-10-20T20:59:53.000Z",
   "coverage": 1,
   "overall": {
-    "count": 6720,
-    "logLoss": 0.656237700133132,
-    "brierScore": 0.23221860062609911,
-    "accuracy": 0.6095238095238096,
+    "count": 20258,
+    "logLoss": 0.6633637191726697,
+    "brierScore": 0.23549112211536705,
+    "accuracy": 0.5990719715667884,
     "calibration": [
+      {
+        "lower": 0,
+        "upper": 0.1,
+        "count": 1,
+        "predicted": 0.09995763900571993,
+        "observed": 0,
+        "observedInterval95": {
+          "lower": 0,
+          "upper": 0.7934567085261071
+        }
+      },
       {
         "lower": 0.1,
         "upper": 0.2,
-        "count": 45,
-        "predicted": 0.17555536183582546,
-        "observed": 0.06666666666666667
+        "count": 61,
+        "predicted": 0.177630650501292,
+        "observed": 0.2459016393442623,
+        "observedInterval95": {
+          "lower": 0.15506522999562844,
+          "upper": 0.36684662905781873
+        }
       },
       {
         "lower": 0.2,
         "upper": 0.3,
-        "count": 399,
-        "predicted": 0.2622699866334288,
-        "observed": 0.2832080200501253
+        "count": 1034,
+        "predicted": 0.2649157946782305,
+        "observed": 0.25435203094777564,
+        "observedInterval95": {
+          "lower": 0.22875002701782535,
+          "upper": 0.28177258067105515
+        }
       },
       {
         "lower": 0.3,
         "upper": 0.4,
-        "count": 1160,
-        "predicted": 0.3557494422628578,
-        "observed": 0.36724137931034484
+        "count": 3475,
+        "predicted": 0.3567339342055119,
+        "observed": 0.35251798561151076,
+        "observedInterval95": {
+          "lower": 0.33680393256362684,
+          "upper": 0.36855776024814135
+        }
       },
       {
         "lower": 0.4,
         "upper": 0.5,
-        "count": 1700,
-        "predicted": 0.4515050403012156,
-        "observed": 0.45529411764705885
+        "count": 5781,
+        "predicted": 0.4521601817860523,
+        "observed": 0.4462895692786715,
+        "observedInterval95": {
+          "lower": 0.4335148653756621,
+          "upper": 0.4591356092717337
+        }
       },
       {
         "lower": 0.5,
         "upper": 0.6,
-        "count": 1815,
-        "predicted": 0.5480004764901231,
-        "observed": 0.5553719008264463
+        "count": 5765,
+        "predicted": 0.5470847337835164,
+        "observed": 0.5484822202948829,
+        "observedInterval95": {
+          "lower": 0.5356079592618669,
+          "upper": 0.5612919105490844
+        }
       },
       {
         "lower": 0.6,
         "upper": 0.7,
-        "count": 1134,
-        "predicted": 0.6439889811299593,
-        "observed": 0.6569664902998237
+        "count": 3263,
+        "predicted": 0.6418845861686784,
+        "observed": 0.6310144039227704,
+        "observedInterval95": {
+          "lower": 0.614312732173937,
+          "upper": 0.6474079462942202
+        }
       },
       {
         "lower": 0.7,
         "upper": 0.8,
-        "count": 431,
-        "predicted": 0.7385791437250929,
-        "observed": 0.7494199535962877
+        "count": 821,
+        "predicted": 0.7335866398700396,
+        "observed": 0.7320341047503045,
+        "observedInterval95": {
+          "lower": 0.7007084320962169,
+          "upper": 0.7611984358406088
+        }
       },
       {
         "lower": 0.8,
         "upper": 0.9,
-        "count": 36,
-        "predicted": 0.8284693087869126,
-        "observed": 0.8888888888888888
+        "count": 56,
+        "predicted": 0.8234415051936159,
+        "observed": 0.7857142857142857,
+        "observedInterval95": {
+          "lower": 0.6618028634399505,
+          "upper": 0.8729421968525549
+        }
+      },
+      {
+        "lower": 0.9,
+        "upper": 1,
+        "count": 1,
+        "predicted": 0.9022808616815714,
+        "observed": 1,
+        "observedInterval95": {
+          "lower": 0.20654329147389294,
+          "upper": 1
+        }
       }
     ]
   },
   "accuracyInterval95": {
-    "lower": 0.5977999547170442,
-    "upper": 0.6211225136528234
+    "lower": 0.5923049401942102,
+    "upper": 0.6058014352894476
   },
   "testRange": {
-    "path": "data/research/26a286e9-655e-4da9-b5b5-129d9652b9cf/test.json",
-    "count": 6720,
-    "sha256": "5cd0f1b67f69d72a7ddfa656c7837b9a85c79b699d4a8937fd587e1d62378dcc",
-    "first": "2026-10-16T00:13:30.000Z",
-    "last": "2026-10-16T03:44:40.000Z"
+    "path": "data/research/e5dbba5c-298c-4ae9-b686-3fe24190668c/test.json",
+    "count": 20258,
+    "sha256": "bff9a61b2bc3fc386c1bd2ddbc5ffbb85ecef48c01e0660711e14bf5611dcf0a",
+    "first": "2026-10-22T20:51:11.000Z",
+    "last": "2026-10-23T04:59:44.000Z"
   },
   "newHeroes": [
     {
-      "heroId": 78,
-      "name": "Deadman Danny",
-      "trainingMatches": 17980,
-      "count": 5677,
-      "accuracy": 0.6149374669719923,
-      "logLoss": 0.6540962584711115,
-      "brierScore": 0.23120158207970945
+      "heroId": 86,
+      "name": "Violet",
+      "trainingMatches": 40957,
+      "count": 11206,
+      "accuracy": 0.5966446546492951,
+      "logLoss": 0.6650964321528747,
+      "brierScore": 0.23629082277685096
+    },
+    {
+      "heroId": 87,
+      "name": "Nurse Harrow",
+      "trainingMatches": 59757,
+      "count": 15873,
+      "accuracy": 0.5988785988785988,
+      "logLoss": 0.6639642126786869,
+      "brierScore": 0.2357735014356218
     }
   ],
   "protocol": "roster-expansion-v1",
