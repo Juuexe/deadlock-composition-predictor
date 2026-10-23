@@ -12,7 +12,7 @@ export function parseAnnouncements(value: unknown): Announcement[] {
     if (typeof entry.title !== 'string' || typeof entry.content !== 'string' || typeof entry.pub_date !== 'string'
       || typeof entry.link !== 'string' || !/^https:\/\/store\.steampowered\.com\/news\/app\/1422450\/view\/\d+$/.test(entry.link)
       || !Number.isFinite(Date.parse(entry.pub_date))) throw new Error('Invalid official Steam announcement.');
-    if (!/update/i.test(entry.title) && !/available(?: in-game| to play)? now|(?:massive|major) (?:visual )?update/i.test(entry.content)) continue;
+    if (!/update/i.test(entry.title) && !/available(?: in-game| to play)? now|now joins us|joining us today|(?:massive|major) (?:visual )?update/i.test(entry.content)) continue;
     const at = new Date(entry.pub_date).toISOString();
     if (!result.some(item => item.at === at)) result.push({ at, title: entry.title.trim(), link: entry.link });
   }

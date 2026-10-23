@@ -14,6 +14,9 @@ test('uses official Steam gameplay announcements, not stale forum publication ti
   assert.equal(announcements.length, 2);
   assert.equal(announcements[0].title, 'Minor Update');
   assert.equal(parseAnnouncements([{ ...feed[0], content: 'The hero is available to play now!' }]).length, 1);
+  assert.equal(parseAnnouncements([{ ...feed[0], content: 'Nurse Harrow now joins us on the streets of Manhattan.' }]).length, 1);
+  assert.equal(parseAnnouncements([{ ...feed[0], content: 'With Nurse Harrow joining us today, that marks the end of our releases.' }]).length, 1);
+  assert.equal(parseAnnouncements([{ ...feed[0], content: 'Nurse Harrow will be joining us next Tuesday.' }]).length, 0);
   assert.throws(() => parseAnnouncements([{ ...feed[0], link: 'https://evil.example/news' }]));
 });
 
