@@ -1,4 +1,4 @@
-# Deadman Danny roster update
+# Deadman Danny roster update (historical)
 
 Candidate version 5c094e85ad12 supports all 42 active catalog heroes, including Deadman Danny (78). The hero-only model selected regularization 0.001 and temperature 1. Pair candidates did not win selection. The prediction formula and source src/model.ts are unchanged.
 
@@ -16,6 +16,6 @@ Candidate coverage is 100% for each cohort. The old model picked 58.58% of winne
 
 This is a roughly 3.5-hour chronological test window, not established prospective multi-day reliability. The available API caps many hourly samples at 2,500 matches. The new hero appears in most games in this sample, so common-hero comparisons use a smaller cohort. No causal hero-strength conclusion or exact probability calibration is established. New prospective monitoring must use its own immutable experiment; the old frozen snapshot is retained and never reset.
 
-Aggregate results: roster-evaluation.json. Public model-linked holdout evidence: roster-release.json. Datasets, candidates, protocol snapshots, test markers and weights remain local and ignored. The pre-update model 3debc4970fe5 is archived for rollback.
+The original aggregate results and manifest remain in Git history at the [Danny release](https://github.com/Juuexe/deadlock-composition-predictor/tree/529f0db2cd2b8e23a842a04c6ccff7901768ddc9/docs). Datasets, candidates, protocol snapshots, test markers and weights remain local and ignored. Models 3debc4970fe5 and 5c094e85ad12 are archived for rollback.
 
-The reviewed update is merged into main and deployed at https://deadlock-composition-predictor.vercel.app. Public health reports 5c094e85ad12; all 42 heroes are available, Danny lineups predict, draft suggestions work and the evidence endpoint returns this holdout separately from the old reliability snapshot. TypeScript checks, 35 tests and browser/API smoke checks passed.
+This reviewed update was merged into main and verified in production with 42 heroes, Danny predictions, draft suggestions and matching holdout evidence. TypeScript checks, 35 tests and browser/API smoke checks passed at that release. The October 23 refresh supersedes it; see data-refresh-assessment.md for the current model and evidence.

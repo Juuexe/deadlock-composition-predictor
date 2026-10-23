@@ -1,266 +1,42 @@
 {
-  "id": "26a286e9-655e-4da9-b5b5-129d9652b9cf",
-  "preparedAt": "2026-10-16T04:16:01.726Z",
-  "directory": "data/research/26a286e9-655e-4da9-b5b5-129d9652b9cf",
-  "currentPeriod": "2026-10-15T03:11:58.000Z",
+  "id": "e5dbba5c-298c-4ae9-b686-3fe24190668c",
+  "preparedAt": "2026-10-23T05:48:00.810Z",
+  "directory": "data/research/e5dbba5c-298c-4ae9-b686-3fe24190668c",
+  "currentPeriod": "2026-10-20T20:59:53.000Z",
   "periods": [
-    {
-      "at": "2026-10-06T20:59:54.000Z",
-      "title": "Mind the Birds!",
-      "link": "https://store.steampowered.com/news/app/1422450/view/703281025618282871",
-      "count": 28075,
-      "path": "data/research/26a286e9-655e-4da9-b5b5-129d9652b9cf/period-20261006205954000.json"
-    },
-    {
-      "at": "2026-10-09T21:00:04.000Z",
-      "title": "Make Your Move.",
-      "link": "https://store.steampowered.com/news/app/1422450/view/703281660030879519",
-      "count": 19270,
-      "path": "data/research/26a286e9-655e-4da9-b5b5-129d9652b9cf/period-20261009210004000.json"
-    },
     {
       "at": "2026-10-13T20:59:55.000Z",
       "title": "Fairfax Industries Employee Spotlight",
       "link": "https://store.steampowered.com/news/app/1422450/view/703281660030880788",
-      "count": 11858,
-      "path": "data/research/26a286e9-655e-4da9-b5b5-129d9652b9cf/period-20261013205955000.json"
+      "count": 12498,
+      "path": "data/research/e5dbba5c-298c-4ae9-b686-3fe24190668c/period-20261013205955000.json"
     },
     {
       "at": "2026-10-15T03:11:58.000Z",
       "title": "Minor Update - 10-14-2026",
       "link": "https://store.steampowered.com/news/app/1422450/view/669505296465396213",
-      "count": 49706,
-      "path": "data/research/26a286e9-655e-4da9-b5b5-129d9652b9cf/period-20261015031158000.json"
+      "count": 17497,
+      "path": "data/research/e5dbba5c-298c-4ae9-b686-3fe24190668c/period-20261015031158000.json"
+    },
+    {
+      "at": "2026-10-16T21:00:07.000Z",
+      "title": "Paint the Town",
+      "link": "https://store.steampowered.com/news/app/1422450/view/669505296465396531",
+      "count": 39993,
+      "path": "data/research/e5dbba5c-298c-4ae9-b686-3fe24190668c/period-20261016210007000.json"
+    },
+    {
+      "at": "2026-10-20T20:59:53.000Z",
+      "title": "Shh... This Won't Hurt a Bit.",
+      "link": "https://store.steampowered.com/news/app/1422450/view/669505296465396778",
+      "count": 136646,
+      "path": "data/research/e5dbba5c-298c-4ae9-b686-3fe24190668c/period-20261020205953000.json"
     }
   ],
   "boundaryStatus": "Official announcement-time proxies; exact match build/deployment versions are unavailable.",
   "bufferSeconds": 3600,
   "perWindowLimit": 2500,
   "windows": [
-    {
-      "period": "2026-10-06T20:59:54.000Z",
-      "minimum": 1791323994,
-      "maximum": 1791327593,
-      "received": 2500,
-      "accepted": 2500,
-      "capped": true
-    },
-    {
-      "period": "2026-10-06T20:59:54.000Z",
-      "minimum": 1791345594,
-      "maximum": 1791349193,
-      "received": 2500,
-      "accepted": 2500,
-      "capped": true
-    },
-    {
-      "period": "2026-10-06T20:59:54.000Z",
-      "minimum": 1791367194,
-      "maximum": 1791370793,
-      "received": 1861,
-      "accepted": 1861,
-      "capped": false
-    },
-    {
-      "period": "2026-10-06T20:59:54.000Z",
-      "minimum": 1791388794,
-      "maximum": 1791392393,
-      "received": 2500,
-      "accepted": 2500,
-      "capped": true
-    },
-    {
-      "period": "2026-10-06T20:59:54.000Z",
-      "minimum": 1791410394,
-      "maximum": 1791413993,
-      "received": 2500,
-      "accepted": 2500,
-      "capped": true
-    },
-    {
-      "period": "2026-10-06T20:59:54.000Z",
-      "minimum": 1791431994,
-      "maximum": 1791435593,
-      "received": 2500,
-      "accepted": 2500,
-      "capped": true
-    },
-    {
-      "period": "2026-10-06T20:59:54.000Z",
-      "minimum": 1791453594,
-      "maximum": 1791457193,
-      "received": 1862,
-      "accepted": 1862,
-      "capped": false
-    },
-    {
-      "period": "2026-10-06T20:59:54.000Z",
-      "minimum": 1791475194,
-      "maximum": 1791478793,
-      "received": 2500,
-      "accepted": 2499,
-      "capped": true
-    },
-    {
-      "period": "2026-10-06T20:59:54.000Z",
-      "minimum": 1791496794,
-      "maximum": 1791500393,
-      "received": 2500,
-      "accepted": 2500,
-      "capped": true
-    },
-    {
-      "period": "2026-10-06T20:59:54.000Z",
-      "minimum": 1791518394,
-      "maximum": 1791521993,
-      "received": 2500,
-      "accepted": 2500,
-      "capped": true
-    },
-    {
-      "period": "2026-10-06T20:59:54.000Z",
-      "minimum": 1791539994,
-      "maximum": 1791543593,
-      "received": 1854,
-      "accepted": 1854,
-      "capped": false
-    },
-    {
-      "period": "2026-10-06T20:59:54.000Z",
-      "minimum": 1791561594,
-      "maximum": 1791565193,
-      "received": 2500,
-      "accepted": 2499,
-      "capped": true
-    },
-    {
-      "period": "2026-10-09T21:00:04.000Z",
-      "minimum": 1791583204,
-      "maximum": 1791586803,
-      "received": 2500,
-      "accepted": 2499,
-      "capped": true
-    },
-    {
-      "period": "2026-10-09T21:00:04.000Z",
-      "minimum": 1791604804,
-      "maximum": 1791608403,
-      "received": 2500,
-      "accepted": 1735,
-      "capped": true
-    },
-    {
-      "period": "2026-10-09T21:00:04.000Z",
-      "minimum": 1791626404,
-      "maximum": 1791630003,
-      "received": 2378,
-      "accepted": 1152,
-      "capped": false
-    },
-    {
-      "period": "2026-10-09T21:00:04.000Z",
-      "minimum": 1791648004,
-      "maximum": 1791651603,
-      "received": 2500,
-      "accepted": 1249,
-      "capped": true
-    },
-    {
-      "period": "2026-10-09T21:00:04.000Z",
-      "minimum": 1791669604,
-      "maximum": 1791673203,
-      "received": 2500,
-      "accepted": 1160,
-      "capped": true
-    },
-    {
-      "period": "2026-10-09T21:00:04.000Z",
-      "minimum": 1791691204,
-      "maximum": 1791694803,
-      "received": 2500,
-      "accepted": 1192,
-      "capped": true
-    },
-    {
-      "period": "2026-10-09T21:00:04.000Z",
-      "minimum": 1791712804,
-      "maximum": 1791716403,
-      "received": 2477,
-      "accepted": 1100,
-      "capped": false
-    },
-    {
-      "period": "2026-10-09T21:00:04.000Z",
-      "minimum": 1791734404,
-      "maximum": 1791738003,
-      "received": 2500,
-      "accepted": 1123,
-      "capped": true
-    },
-    {
-      "period": "2026-10-09T21:00:04.000Z",
-      "minimum": 1791756004,
-      "maximum": 1791759603,
-      "received": 2500,
-      "accepted": 1245,
-      "capped": true
-    },
-    {
-      "period": "2026-10-09T21:00:04.000Z",
-      "minimum": 1791777604,
-      "maximum": 1791781203,
-      "received": 2500,
-      "accepted": 1223,
-      "capped": true
-    },
-    {
-      "period": "2026-10-09T21:00:04.000Z",
-      "minimum": 1791799204,
-      "maximum": 1791802803,
-      "received": 1957,
-      "accepted": 768,
-      "capped": false
-    },
-    {
-      "period": "2026-10-09T21:00:04.000Z",
-      "minimum": 1791820804,
-      "maximum": 1791824403,
-      "received": 2500,
-      "accepted": 1044,
-      "capped": true
-    },
-    {
-      "period": "2026-10-09T21:00:04.000Z",
-      "minimum": 1791842404,
-      "maximum": 1791846003,
-      "received": 2500,
-      "accepted": 1056,
-      "capped": true
-    },
-    {
-      "period": "2026-10-09T21:00:04.000Z",
-      "minimum": 1791864004,
-      "maximum": 1791867603,
-      "received": 2500,
-      "accepted": 1137,
-      "capped": true
-    },
-    {
-      "period": "2026-10-09T21:00:04.000Z",
-      "minimum": 1791885604,
-      "maximum": 1791889203,
-      "received": 1818,
-      "accepted": 749,
-      "capped": false
-    },
-    {
-      "period": "2026-10-09T21:00:04.000Z",
-      "minimum": 1791907204,
-      "maximum": 1791910803,
-      "received": 2500,
-      "accepted": 838,
-      "capped": true
-    },
     {
       "period": "2026-10-13T20:59:55.000Z",
       "minimum": 1791928795,
@@ -274,16 +50,16 @@
       "minimum": 1791950395,
       "maximum": 1791953994,
       "received": 2500,
-      "accepted": 2499,
+      "accepted": 2498,
       "capped": true
     },
     {
       "period": "2026-10-13T20:59:55.000Z",
       "minimum": 1791971995,
       "maximum": 1791975594,
-      "received": 1859,
-      "accepted": 1859,
-      "capped": false
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
     },
     {
       "period": "2026-10-13T20:59:55.000Z",
@@ -311,91 +87,11 @@
     },
     {
       "period": "2026-10-15T03:11:58.000Z",
-      "minimum": 1792041118,
-      "maximum": 1792044717,
-      "received": 2211,
-      "accepted": 2211,
-      "capped": false
-    },
-    {
-      "period": "2026-10-15T03:11:58.000Z",
-      "minimum": 1792044718,
-      "maximum": 1792048317,
-      "received": 1880,
-      "accepted": 1880,
-      "capped": false
-    },
-    {
-      "period": "2026-10-15T03:11:58.000Z",
-      "minimum": 1792048318,
-      "maximum": 1792051917,
-      "received": 1631,
-      "accepted": 1631,
-      "capped": false
-    },
-    {
-      "period": "2026-10-15T03:11:58.000Z",
-      "minimum": 1792051918,
-      "maximum": 1792055517,
-      "received": 1497,
-      "accepted": 1497,
-      "capped": false
-    },
-    {
-      "period": "2026-10-15T03:11:58.000Z",
-      "minimum": 1792055518,
-      "maximum": 1792059117,
-      "received": 1501,
-      "accepted": 1501,
-      "capped": false
-    },
-    {
-      "period": "2026-10-15T03:11:58.000Z",
       "minimum": 1792059118,
       "maximum": 1792062717,
-      "received": 1503,
-      "accepted": 1503,
-      "capped": false
-    },
-    {
-      "period": "2026-10-15T03:11:58.000Z",
-      "minimum": 1792062718,
-      "maximum": 1792066317,
-      "received": 1653,
-      "accepted": 1653,
-      "capped": false
-    },
-    {
-      "period": "2026-10-15T03:11:58.000Z",
-      "minimum": 1792066318,
-      "maximum": 1792069917,
-      "received": 1880,
-      "accepted": 1880,
-      "capped": false
-    },
-    {
-      "period": "2026-10-15T03:11:58.000Z",
-      "minimum": 1792069918,
-      "maximum": 1792073517,
-      "received": 2081,
-      "accepted": 2081,
-      "capped": false
-    },
-    {
-      "period": "2026-10-15T03:11:58.000Z",
-      "minimum": 1792073518,
-      "maximum": 1792077117,
-      "received": 2302,
-      "accepted": 2301,
-      "capped": false
-    },
-    {
-      "period": "2026-10-15T03:11:58.000Z",
-      "minimum": 1792077118,
-      "maximum": 1792080717,
-      "received": 2366,
-      "accepted": 2365,
-      "capped": false
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
     },
     {
       "period": "2026-10-15T03:11:58.000Z",
@@ -407,90 +103,602 @@
     },
     {
       "period": "2026-10-15T03:11:58.000Z",
-      "minimum": 1792084318,
-      "maximum": 1792087917,
-      "received": 2500,
-      "accepted": 2500,
-      "capped": true
-    },
-    {
-      "period": "2026-10-15T03:11:58.000Z",
-      "minimum": 1792087918,
-      "maximum": 1792091517,
-      "received": 2500,
-      "accepted": 2499,
-      "capped": true
-    },
-    {
-      "period": "2026-10-15T03:11:58.000Z",
-      "minimum": 1792091518,
-      "maximum": 1792095117,
-      "received": 2500,
-      "accepted": 2500,
-      "capped": true
-    },
-    {
-      "period": "2026-10-15T03:11:58.000Z",
-      "minimum": 1792095118,
-      "maximum": 1792098717,
-      "received": 2500,
-      "accepted": 2493,
-      "capped": true
-    },
-    {
-      "period": "2026-10-15T03:11:58.000Z",
-      "minimum": 1792098718,
-      "maximum": 1792102317,
-      "received": 2500,
-      "accepted": 2497,
-      "capped": true
-    },
-    {
-      "period": "2026-10-15T03:11:58.000Z",
       "minimum": 1792102318,
       "maximum": 1792105917,
       "received": 2500,
+      "accepted": 2498,
+      "capped": true
+    },
+    {
+      "period": "2026-10-15T03:11:58.000Z",
+      "minimum": 1792123918,
+      "maximum": 1792127517,
+      "received": 2500,
       "accepted": 2499,
       "capped": true
     },
     {
       "period": "2026-10-15T03:11:58.000Z",
-      "minimum": 1792105918,
-      "maximum": 1792109517,
-      "received": 2432,
-      "accepted": 2432,
-      "capped": false
+      "minimum": 1792145518,
+      "maximum": 1792149117,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
     },
     {
       "period": "2026-10-15T03:11:58.000Z",
-      "minimum": 1792109518,
-      "maximum": 1792113117,
-      "received": 2291,
-      "accepted": 2291,
+      "minimum": 1792167118,
+      "maximum": 1792170717,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "period": "2026-10-16T21:00:07.000Z",
+      "minimum": 1792188007,
+      "maximum": 1792191606,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "period": "2026-10-16T21:00:07.000Z",
+      "minimum": 1792209607,
+      "maximum": 1792213206,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "period": "2026-10-16T21:00:07.000Z",
+      "minimum": 1792231207,
+      "maximum": 1792234806,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "period": "2026-10-16T21:00:07.000Z",
+      "minimum": 1792252807,
+      "maximum": 1792256406,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "period": "2026-10-16T21:00:07.000Z",
+      "minimum": 1792274407,
+      "maximum": 1792278006,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "period": "2026-10-16T21:00:07.000Z",
+      "minimum": 1792296007,
+      "maximum": 1792299606,
+      "received": 2500,
+      "accepted": 2499,
+      "capped": true
+    },
+    {
+      "period": "2026-10-16T21:00:07.000Z",
+      "minimum": 1792317607,
+      "maximum": 1792321206,
+      "received": 2500,
+      "accepted": 2499,
+      "capped": true
+    },
+    {
+      "period": "2026-10-16T21:00:07.000Z",
+      "minimum": 1792339207,
+      "maximum": 1792342806,
+      "received": 2500,
+      "accepted": 2499,
+      "capped": true
+    },
+    {
+      "period": "2026-10-16T21:00:07.000Z",
+      "minimum": 1792360807,
+      "maximum": 1792364406,
+      "received": 2500,
+      "accepted": 2499,
+      "capped": true
+    },
+    {
+      "period": "2026-10-16T21:00:07.000Z",
+      "minimum": 1792382407,
+      "maximum": 1792386006,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "period": "2026-10-16T21:00:07.000Z",
+      "minimum": 1792404007,
+      "maximum": 1792407606,
+      "received": 2500,
+      "accepted": 2499,
+      "capped": true
+    },
+    {
+      "period": "2026-10-16T21:00:07.000Z",
+      "minimum": 1792425607,
+      "maximum": 1792429206,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "period": "2026-10-16T21:00:07.000Z",
+      "minimum": 1792447207,
+      "maximum": 1792450806,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "period": "2026-10-16T21:00:07.000Z",
+      "minimum": 1792468807,
+      "maximum": 1792472406,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "period": "2026-10-16T21:00:07.000Z",
+      "minimum": 1792490407,
+      "maximum": 1792494006,
+      "received": 2500,
+      "accepted": 2499,
+      "capped": true
+    },
+    {
+      "period": "2026-10-16T21:00:07.000Z",
+      "minimum": 1792512007,
+      "maximum": 1792515606,
+      "received": 2500,
+      "accepted": 2499,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792533593,
+      "maximum": 1792537192,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792537193,
+      "maximum": 1792540792,
+      "received": 2500,
+      "accepted": 2499,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792540793,
+      "maximum": 1792544392,
+      "received": 2500,
+      "accepted": 2495,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792544393,
+      "maximum": 1792547992,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792547993,
+      "maximum": 1792551592,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792551593,
+      "maximum": 1792555192,
+      "received": 2500,
+      "accepted": 2499,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792555193,
+      "maximum": 1792558792,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792558793,
+      "maximum": 1792562392,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792562393,
+      "maximum": 1792565992,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792565993,
+      "maximum": 1792569592,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792569593,
+      "maximum": 1792573192,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792573193,
+      "maximum": 1792576792,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792576793,
+      "maximum": 1792580392,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792580393,
+      "maximum": 1792583992,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792583993,
+      "maximum": 1792587592,
+      "received": 2500,
+      "accepted": 2499,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792587593,
+      "maximum": 1792591192,
+      "received": 2500,
+      "accepted": 2499,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792591193,
+      "maximum": 1792594792,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792594793,
+      "maximum": 1792598392,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792598393,
+      "maximum": 1792601992,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792601993,
+      "maximum": 1792605592,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792605593,
+      "maximum": 1792609192,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792609193,
+      "maximum": 1792612792,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792612793,
+      "maximum": 1792616392,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792616393,
+      "maximum": 1792619992,
+      "received": 2500,
+      "accepted": 2499,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792619993,
+      "maximum": 1792623592,
+      "received": 2500,
+      "accepted": 2499,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792623593,
+      "maximum": 1792627192,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792627193,
+      "maximum": 1792630792,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792630793,
+      "maximum": 1792634392,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792634393,
+      "maximum": 1792637992,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792637993,
+      "maximum": 1792641592,
+      "received": 2500,
+      "accepted": 2499,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792641593,
+      "maximum": 1792645192,
+      "received": 2500,
+      "accepted": 2499,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792645193,
+      "maximum": 1792648792,
+      "received": 2500,
+      "accepted": 2499,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792648793,
+      "maximum": 1792652392,
+      "received": 2500,
+      "accepted": 2498,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792652393,
+      "maximum": 1792655992,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792655993,
+      "maximum": 1792659592,
+      "received": 2354,
+      "accepted": 2353,
       "capped": false
     },
     {
-      "period": "2026-10-15T03:11:58.000Z",
-      "minimum": 1792113118,
-      "maximum": 1792116717,
-      "received": 2321,
-      "accepted": 2321,
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792659593,
+      "maximum": 1792663192,
+      "received": 2327,
+      "accepted": 2326,
       "capped": false
     },
     {
-      "period": "2026-10-15T03:11:58.000Z",
-      "minimum": 1792116718,
-      "maximum": 1792120317,
-      "received": 1877,
-      "accepted": 1872,
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792663193,
+      "maximum": 1792666792,
+      "received": 2402,
+      "accepted": 2402,
       "capped": false
     },
     {
-      "period": "2026-10-15T03:11:58.000Z",
-      "minimum": 1792120318,
-      "maximum": 1792123108,
-      "received": 595,
-      "accepted": 299,
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792666793,
+      "maximum": 1792670392,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792670393,
+      "maximum": 1792673992,
+      "received": 2500,
+      "accepted": 2499,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792673993,
+      "maximum": 1792677592,
+      "received": 2500,
+      "accepted": 2499,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792677593,
+      "maximum": 1792681192,
+      "received": 2500,
+      "accepted": 2499,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792681193,
+      "maximum": 1792684792,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792684793,
+      "maximum": 1792688392,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792688393,
+      "maximum": 1792691992,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792691993,
+      "maximum": 1792695592,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792695593,
+      "maximum": 1792699192,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792699193,
+      "maximum": 1792702792,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792702793,
+      "maximum": 1792706392,
+      "received": 2500,
+      "accepted": 2499,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792706393,
+      "maximum": 1792709992,
+      "received": 2500,
+      "accepted": 2499,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792709993,
+      "maximum": 1792713592,
+      "received": 2500,
+      "accepted": 2499,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792713593,
+      "maximum": 1792717192,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792717193,
+      "maximum": 1792720792,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792720793,
+      "maximum": 1792724392,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792724393,
+      "maximum": 1792727992,
+      "received": 2500,
+      "accepted": 2500,
+      "capped": true
+    },
+    {
+      "period": "2026-10-20T20:59:53.000Z",
+      "minimum": 1792727993,
+      "maximum": 1792731592,
+      "received": 2282,
+      "accepted": 2087,
       "capped": false
     }
   ],
@@ -498,42 +706,42 @@
   "protocol": "Time-based 50/20/15/15 splits; purge earlier matches not finished before the next cutoff. Validation selects the model, calibration selects temperature, final test is opened once after both are frozen.",
   "partitions": {
     "train": {
-      "path": "data/research/26a286e9-655e-4da9-b5b5-129d9652b9cf/train.json",
-      "count": 21116,
-      "sha256": "ac74e5e1d9c9bd362acc15303733a21ff651f383025a1ab977cf01a1ebdef7d4",
-      "first": "2026-10-15T04:16:31.000Z",
-      "last": "2026-10-15T15:44:25.000Z"
+      "path": "data/research/e5dbba5c-298c-4ae9-b686-3fe24190668c/train.json",
+      "count": 67471,
+      "sha256": "45cdff415a0a960f31307858074cadbbc7afd0bb38ee4be53a0a3cea289a3ccf",
+      "first": "2026-10-20T22:42:42.000Z",
+      "last": "2026-10-22T01:39:18.000Z"
     },
     "validation": {
-      "path": "data/research/26a286e9-655e-4da9-b5b5-129d9652b9cf/validation.json",
-      "count": 10163,
-      "sha256": "a3ba089f427acddff02161a598aec20f14a8da6a672f2039316929ffd1176b9d",
-      "first": "2026-10-15T16:00:40.000Z",
-      "last": "2026-10-15T20:28:49.000Z"
+      "path": "data/research/e5dbba5c-298c-4ae9-b686-3fe24190668c/validation.json",
+      "count": 25454,
+      "sha256": "3952f9b5522bb69c88d2a640b087788effaa8d09d6c72504d63807b91d29d4c3",
+      "first": "2026-10-22T01:51:13.000Z",
+      "last": "2026-10-22T12:29:54.000Z"
     },
     "calibration": {
-      "path": "data/research/26a286e9-655e-4da9-b5b5-129d9652b9cf/calibration.json",
-      "count": 7495,
-      "sha256": "2d1ba9e7cb3a2d89cf9cfeda2a7f86fcd5fb5c4e1ab20e6fa0233a076ca2be95",
-      "first": "2026-10-15T20:42:14.000Z",
-      "last": "2026-10-15T23:56:44.000Z"
+      "path": "data/research/e5dbba5c-298c-4ae9-b686-3fe24190668c/calibration.json",
+      "count": 18326,
+      "sha256": "55c69b30c1d66fccdd6a36f1e90df06337e91ff9ddb5ed29fee1053c6c01efa9",
+      "first": "2026-10-22T12:42:40.000Z",
+      "last": "2026-10-22T20:40:43.000Z"
     },
     "test": {
-      "path": "data/research/26a286e9-655e-4da9-b5b5-129d9652b9cf/test.json",
-      "count": 6720,
-      "sha256": "5cd0f1b67f69d72a7ddfa656c7837b9a85c79b699d4a8937fd587e1d62378dcc",
-      "first": "2026-10-16T00:13:30.000Z",
-      "last": "2026-10-16T03:44:40.000Z"
+      "path": "data/research/e5dbba5c-298c-4ae9-b686-3fe24190668c/test.json",
+      "count": 20258,
+      "sha256": "bff9a61b2bc3fc386c1bd2ddbc5ffbb85ecef48c01e0660711e14bf5611dcf0a",
+      "first": "2026-10-22T20:51:11.000Z",
+      "last": "2026-10-23T04:59:44.000Z"
     }
   },
-  "purged": 4212,
+  "purged": 5137,
   "cutoffs": [
-    "2026-10-15T16:00:35.500Z",
-    "2026-10-15T20:42:13.300Z",
-    "2026-10-16T00:13:26.650Z"
+    "2026-10-22T01:51:13.000Z",
+    "2026-10-22T12:42:37.400Z",
+    "2026-10-22T20:51:10.700Z"
   ],
   "testFreshness": {
-    "unseenSince": "2026-10-10T03:33:32.000Z",
+    "unseenSince": "2026-10-16T03:44:40.000Z",
     "excluded": 0,
     "rule": "Final test starts strictly after legacy imported samples and every previously prepared final-test window."
   }

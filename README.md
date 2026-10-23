@@ -25,6 +25,8 @@ The importer uses the community [Deadlock API](https://api.deadlock-api.com/docs
 
 Datasets and weights live in ignored `data/` and `models/` directories. They are not included in the repository. The app needs no database, player login or paid service. Python is only needed for the optional tree research experiment, not the browser app. `npm run check` runs strict TypeScript checks and the Node tests.
 
+Hosted deployments use server-only encrypted `MODEL_JSON` and `HEROES_JSON` secrets. `MODEL_JSON` accepts the model object as JSON or `gzip:` followed by base64-encoded gzip JSON for larger pair models. Decompression is capped at 1 MiB; the same model validation applies afterward. Encoding changes storage size only, preserving coefficients, scores and model version. Never commit these values or expose them to browser code.
+
 ## What the app does
 
 **[Open the live app](https://deadlock-composition-predictor.vercel.app)** to compare two Deadlock hero compositions.
@@ -36,9 +38,9 @@ Datasets and weights live in ignored `data/` and `models/` directories. They are
 
 Predictions use **hero composition only**. Player identities, skill, personal win rates, ranks, items and live gameplay are excluded as inputs. Historical compositions and outcomes come from the independent Deadlock API; personal fields returned upstream are discarded before storing matches. The app is an independent community project, not affiliated with Valve.
 
-The deployed predictor currently uses learned hero-strength coefficients. Pair interactions, nonlinear models and extra calibration curves are research experiments, not active prediction features. Draft assistance is secondary and assumes uniformly sampled remaining picks; it is not a validated counter-pick strategy.
+The deployed predictor uses learned hero-strength coefficients plus ally-pair and opposing-pair interactions. Nonlinear models and extra calibration curves remain research experiments. Draft assistance is secondary and assumes uniformly sampled remaining picks; it is not a validated counter-pick strategy.
 
-Predictions remain experimental. Unsupported heroes are unavailable for selection, and the interface names catalog heroes missing from the model. The active 42-hero model includes Deadman Danny. It passed a single-use chronological roster holdout; the old model's closed reliability period is separate and is not evidence for this new version. Exact probabilities and future-patch performance remain uncertain. Automatic match-start detection and live prediction are not implemented.
+Predictions remain experimental. Unsupported heroes are unavailable for selection, and the interface names catalog heroes missing from the model. The active 44-hero model includes Deadman Danny, Violet and Nurse Harrow. It passed a single-use 20,258-match chronological roster holdout with 59.91% accuracy and 100% coverage; see [the data refresh assessment](docs/data-refresh-assessment.md). Older models' evaluation periods are separate and are not evidence for this version. Exact probabilities and future-patch performance remain uncertain. Automatic match-start detection and live prediction are not implemented.
 
 ## Math and logic
 
@@ -50,7 +52,7 @@ A displayed 58% means the model estimates a 0.58 probability for that compositio
 
 ### 1. Turn two compositions into a score
 
-The deployed model is regularized logistic regression with one learned coefficient `w_h` per hero. Define a feature for every supported hero:
+The deployed model is regularized logistic regression. Its base hero score uses one learned coefficient `w_h` per hero; the active pair terms in section 3 are added before applying sigmoid. Define a feature for every supported hero:
 
 ```text
 x_h = +1 if hero h is on team A
@@ -85,9 +87,9 @@ w_h <- w_h - learning_rate * gradient_h
 
 Cross-entropy penalizes confidently wrong predictions heavily. The penalty discourages large coefficients fitted to noise; lambda controls its strength. Coefficients start at zero. Hero-only training takes 300 full-batch updates with learning rate 0.5; the pair experiment takes 1,000 with rate 0.05. This is a fixed optimization budget, not a proof that the exact mathematical optimum was reached. The research workflow compares lambda values 0.001, 0.01 and 0.1 on validation data. The deployed roster-update model uses 0.001.
 
-### 3. Optional interactions and nonlinear research
+### 3. Active interactions and nonlinear research
 
-An experimental pair model adds terms to the same score:
+The active pair model adds terms to the same score:
 
 ```text
 z_pairs = z_heroes
@@ -96,7 +98,7 @@ z_pairs = z_heroes
           + sum of signed opposing-pair coefficients
 ```
 
-Each six-hero team has 15 unordered ally pairs, and a full match has 36 opposing pairs. An opposing coefficient is stored under the smaller/larger hero IDs; its sign is positive when the smaller ID is on A and negative when it is on B. This is a storage convention that preserves team-swap symmetry, not a claim that smaller IDs are stronger. Pair terms with fewer than 20 training observations are omitted and contribute zero. Pair coefficients use the same regularized learning objective. These terms are not active in the deployed predictor because the experiments did not earn promotion.
+Each six-hero team has 15 unordered ally pairs, and a full match has 36 opposing pairs. An opposing coefficient is stored under the smaller/larger hero IDs; its sign is positive when the smaller ID is on A and negative when it is on B. This is a storage convention that preserves team-swap symmetry, not a claim that smaller IDs are stronger. Pair terms with fewer than 20 training observations are omitted and contribute zero. Pair coefficients use the same regularized learning objective. The current model contains 1,892 pair coefficients. Pair interactions won validation selection in the October 23 refresh, followed by a successful frozen roster holdout; earlier pair candidates had not earned promotion.
 
 The tree experiment uses the same signed hero features, but trees can learn conditional combinations. If its raw tree score is `f(x)`, prediction uses `sigmoid((f(x)-f(-x))/(2*T))`, ensuring complementary probabilities after a swap. Mirrored training examples reverse features and labels. The candidate picked more winners in validation but produced worse probability scores, so it was rejected. Neither extra complexity nor higher winner accuracy alone justifies deployment.
 
