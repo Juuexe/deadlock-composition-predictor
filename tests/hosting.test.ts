@@ -29,7 +29,7 @@ test('hosted compressed models preserve scores and reject corrupt or oversized p
     weights:Object.fromEntries([...teamA,...teamB].map(id=>[id,id/100])),counts:Object.fromEntries([...teamA,...teamB].map(id=>[id,100]))};
   const encoded='gzip:'+gzipSync(JSON.stringify(model)).toString('base64');
   process.env.HEROES_JSON=JSON.stringify([...teamA,...teamB].map(id=>({id,name:`Hero ${id}`})));
-  for(const [i,value] of [encoded,'gzip:invalid','gzip:'+gzipSync('x'.repeat(1048577)).toString('base64')].entries()) {
+  for(const [i,value] of [encoded,encoded.slice(0,encoded.length/2),'gzip:invalid','gzip:'+gzipSync('x'.repeat(1048577)).toString('base64')].entries()) {
     process.env.MODEL_JSON=value;
     const {default:freshHandler}=await import(new URL(`../api/index.ts?compressed=${i}`,import.meta.url).href);
     const server=createServer((req,res)=>{Object.assign(req,{body:{teamA,teamB}});freshHandler(req,res);});
