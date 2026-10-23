@@ -3,6 +3,7 @@
 Character-select game interface, requested October 15: dark, loud, cartoonish and interactive. Preserve all prediction, draft, selection, search, share and data logic. No JavaScript or server changes.
 ## Direction
 Cartoon fighting-game roster selection: two 3-by-2 portrait grids, mint own-team and coral opponent-team frames, a central cream VS badge, bold cream/yellow lettering and chunky pressable controls. Real hero portraits carry the illustration; no synthetic claims, fake odds or decorative data.
+Center the main introduction heading and supporting copy in a single column. Keep functional team labels, controls and detailed analysis aligned for scanning.
 ## Interaction
 Cards lift and portraits enlarge on hover and keyboard focus; pressed controls sink; the prediction reveals with a short scale/translate entrance. Respect reduced motion. Native selects retain keyboard and touch behavior, with 44px minimum targets.
 ## Responsive
