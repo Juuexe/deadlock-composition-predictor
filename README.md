@@ -27,6 +27,8 @@ Datasets and weights live in ignored `data/` and `models/` directories. They are
 
 Hosted deployments use server-only encrypted `MODEL_JSON` and `HEROES_JSON` secrets. `MODEL_JSON` accepts the model object as JSON or `gzip:` followed by base64-encoded gzip JSON for larger pair models. Decompression is capped at 1 MiB; the same model validation applies afterward. Encoding changes storage size only, preserving coefficients, scores and model version. Never commit these values or expose them to browser code.
 
+On the Windows CLI path used for this release, piping the large model into `vercel env add` truncated it at 8,192 bytes. Use an ignored JSON request file with the authenticated `vercel api ... --input` environment-variable endpoint for large values, preserving the existing Secret type and project targets. Verify the staged model hash and prediction against the local artifact before promoting a deployment; a successful environment upload alone is insufficient.
+
 ## What the app does
 
 **[Open the live app](https://deadlock-composition-predictor.vercel.app)** to compare two Deadlock hero compositions.
